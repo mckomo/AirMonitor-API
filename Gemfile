@@ -9,6 +9,7 @@ gem 'rack', github: "rack/rack"
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
+gem 'geokit-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -27,6 +28,8 @@ gem 'active_model_serializers', '~> 0.10.0.rc2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'factory_girl'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :development do
