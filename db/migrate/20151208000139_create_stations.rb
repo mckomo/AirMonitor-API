@@ -3,7 +3,7 @@ class CreateStations < ActiveRecord::Migration
 
     create_table :stations, id: :uuid do |t|
       t.string :name,     null: false, limit: 64
-      t.string :code,     null: false, limit: 64,   index: true,  unique: true
+      t.string :code,     null: false, limit: 64,   index: { unique: true }
       t.float :latitude,  null: false
       t.float :longitude, null: false
       t.uuid :user_id,    null: false, index: true, foreign_key: true
