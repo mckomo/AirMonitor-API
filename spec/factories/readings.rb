@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :reading do
-    subject ""
-value 1.5
-measurement ""
-user ""
+    subject_code 'pm10'
+    value 1.5
+    measurement ""
+    user ""
   end
 
 end

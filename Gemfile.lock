@@ -103,6 +103,7 @@ GEM
       actionpack (>= 4.0)
       activemodel (>= 4.0)
       railties (>= 4.0)
+    bcrypt (3.1.10)
     builder (3.2.2)
     byebug (8.2.1)
     concurrent-ruby (1.0.0)
@@ -172,6 +173,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.0.rc2)
   arel!
+  bcrypt (~> 3.1.7)
   byebug
   factory_girl_rails
   geokit-rails

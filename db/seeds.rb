@@ -1,7 +1,31 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+user = User.create([
+  { email: 'mckomo@gmail.com', password: 'passwordToChange' }
+]).first
+
+Station.create([
+  { name: 'Kraków, Aleja Krasińskiego', code: 'PL0012A', latitude: 50.057678, longitude: 19.926189, user_id: user.id },
+  { name: 'Kraków, Bujaka', code: 'PL0501A', latitude: 50.010575, longitude: 19.949189, user_id: user.id },
+  { name: 'Kraków, Nowa Huta', code: 'PL0039A', latitude: 50.069308, longitude: 20.053492, user_id: user.id }
+])
+
+MeasurementSubject.create([
+  { code: 'NO2', name: 'Dwutlenek azotu', unit: 'µg/m<sup>3</sup>' },
+  { code: 'NOX', name: 'Tlenki azotu', unit: 'µg/m<sup>3</sup>'},
+  { code: 'NO', name: 'Tlenk azotu', unit: 'µg/m<sup>3</sup>'},
+  { code: 'CO', name: 'Tlenek węgla', unit: 'µg/m<sup>3</sup>' },
+  { code: 'PM10', name: 'Pył zawieszony PM10', unit: 'µg/m<sup>3</sup>' },
+  { code: 'PM2.5', name: 'Pył zawieszony P2.5', unit: 'µg/m<sup>3</sup>'},
+])
+
+MeasurementNorm.create([
+  { subject_code: 'NO2', level: 0, value: 200, interval: '1 hour' },
+  { subject_code: 'NO2', level: 0, value: 200, interval: '1 hour' },
+  { subject_code: 'NO2', level: 2,  value: 400, interval: '1 year' },
+  { subject_code: 'CO', level: 0, value: 10 * 1000, interval: '8 hours' },
+  { subject_code: 'CO', level: 0, value: 5, interval: '1 year' },
+  { subject_code: 'PM10', level: 0, value: 200, interval: '1 day' },
+  { subject_code: 'PM10', level: 0, value: 30, interval: '1 day' },
+  { subject_code: 'PM10', level: 1, value: 200, interval: '1 day' },
+  { subject_code: 'PM10', level: 2, value: 300, interval: '1 day' },
+  { subject_code: 'PM2.5', level: 0, value: 25, interval: '1 year' },
+])
