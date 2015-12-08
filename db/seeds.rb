@@ -8,7 +8,7 @@ Station.create([
   { name: 'Kraków, Nowa Huta', code: 'PL0039A', latitude: 50.069308, longitude: 20.053492, user_id: user.id }
 ])
 
-MeasurementSubject.create([
+Subject.create([
   { code: 'NO2', name: 'Dwutlenek azotu', unit: 'µg/m<sup>3</sup>' },
   { code: 'NOX', name: 'Tlenki azotu', unit: 'µg/m<sup>3</sup>'},
   { code: 'NO', name: 'Tlenk azotu', unit: 'µg/m<sup>3</sup>'},
@@ -17,7 +17,7 @@ MeasurementSubject.create([
   { code: 'PM2.5', name: 'Pył zawieszony P2.5', unit: 'µg/m<sup>3</sup>'},
 ])
 
-MeasurementNorm.create([
+Norm.create([
   { subject_code: 'NO2', level: 0, value: 200, interval: '1 hour' },
   { subject_code: 'NO2', level: 0, value: 200, interval: '1 hour' },
   { subject_code: 'NO2', level: 2,  value: 400, interval: '1 year' },
