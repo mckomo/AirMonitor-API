@@ -23,8 +23,8 @@ unless User.exists?(email: 'mckomo@gmail.com')
 
   norms = Norm.create!([
     { subject_code: 'NO2', level: 0, value: 200, interval: '1 hour' },
-    { subject_code: 'NO2', level: 0, value: 200, interval: '1 hour' },
-    { subject_code: 'NO2', level: 2,  value: 400, interval: '1 year' },
+    { subject_code: 'NO2', level: 2, value: 400, interval: '1 hour' },
+    { subject_code: 'NO2', level: 0,  value: 40, interval: '1 year' },
     { subject_code: 'CO', level: 0, value: 10 * 1000, interval: '8 hours' },
     { subject_code: 'CO', level: 0, value: 5, interval: '1 year' },
     { subject_code: 'PM10', level: 0, value: 50, interval: '1 day' },
