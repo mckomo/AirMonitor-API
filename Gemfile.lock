@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rack/rack.git
-  revision: c393176b0edf3e5d06cabbb6eb9d9c7a07b2afa7
+  revision: 96ae9b9fed8d6809383b6f48a5884437e76f8ca4
   specs:
     rack (2.0.0.alpha)
       json
@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: e7c48db509f1b712c2a72a3ff7f27e3e8b7b4868
+  revision: eb0e8e216fcf535a1e6b82720dfb7639fcc20ff2
   specs:
     actionmailer (5.0.0.alpha)
       actionpack (= 5.0.0.alpha)
@@ -90,7 +90,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets.git
-  revision: 7d1b99be42c7b354548ac2f03c103ffe8b2cb3b8
+  revision: c35a637a26faa775912e24ee7e42d1e7dd2a39a5
   specs:
     sprockets (4.0.0)
       concurrent-ruby (~> 1.0)
@@ -160,7 +160,7 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
-    sass (3.4.19)
+    sass (3.4.20)
     spring (1.5.0)
     thor (0.19.1)
     thread_safe (0.3.5)
@@ -186,6 +186,3 @@ DEPENDENCIES
   sprockets!
   sprockets-rails!
   tzinfo-data
-
-BUNDLED WITH
-   1.10.6
