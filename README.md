@@ -29,6 +29,7 @@ Get the measurement station object with the latest measurements.
 
 ```
 {  
+{  
    "id":"4b1a8852-0eeb-4dbb-b8cb-4caf4b47ba8f",
    "code":"PL0012A",
    "name":"Kraków, Aleja Krasińskiego",
@@ -40,14 +41,19 @@ Get the measurement station object with the latest measurements.
          "value":77.0,
          "time":"2015-12-12T00:48:07.411Z",
          "source":"http://monitoring.krakow.pios.gov.pl",
+         "subject":{  
+            "code":"NO2",
+            "name":"Dwutlenek azotu",
+            "unit":"µg/m\u003csup\u003e3\u003c/sup\u003e"
+         },
          "norm":{  
             "value":200.0,
             "level":"permissible",
             "interval":"1 hour"
-         } # Norm with the shortest interval
+         }
       },
       ...
-   ],
+   }
    "created_at":"2015-12-12T00:41:44.366Z",
    "updated_at":"2015-12-12T00:41:44.366Z",
    "creator":{  

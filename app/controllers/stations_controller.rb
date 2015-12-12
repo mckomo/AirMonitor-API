@@ -3,7 +3,7 @@ class StationsController < ApplicationController
 
   # GET /stations
   def index
-    @stations = Station.includes(:measurements).all
+    @stations = Station.includes(measurements: [:subject, :norms]).all
 
     render json: @stations, each_serializer: StationPreviewSerializer
   end
