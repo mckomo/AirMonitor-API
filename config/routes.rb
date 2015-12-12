@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
-  resources :readings
-  resources :measurements
-  resources :stations
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  scope 'v1' do
+
+    get 'measurements/subjects', to: 'subjects#index', as: 'subjects'
+    get 'measurements/norms', to: 'norms#index', as: 'norms'
+
+    resources :stations
+
+    resources :stations do
+      resources :measurements, shallow: true
+    end
+
+  end
+
 end
