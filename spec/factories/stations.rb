@@ -1,10 +1,15 @@
 FactoryGirl.define do
+
+  sequence :code do |n|
+    "CODE#{n}"
+  end
+
   factory :station do
-    name 'Bujaka'
-    code 'PL0501A'
-    latitude 50.010575
-    longitude 19.949189
-    user ''
+    code
+    name 'Station name'
+    latitude { rand (50.0 .. 51) }
+    longitude { rand (19.0 .. 20.0) }
+    user
   end
 
 end
