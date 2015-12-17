@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope 'v1' do
+  scope 'api/v1' do
 
     get 'measurements/subjects', to: 'subjects#index', as: 'subjects'
     get 'measurements/norms', to: 'norms#index', as: 'norms'
