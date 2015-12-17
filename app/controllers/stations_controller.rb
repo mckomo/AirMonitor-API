@@ -1,4 +1,5 @@
 class StationsController < ApplicationController
+
   before_action :set_station, only: [:show, :update, :destroy]
 
   # GET /stations
@@ -39,13 +40,15 @@ class StationsController < ApplicationController
   # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_station
-      @station = Station.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def station_params
-      params.require(:station).permit(:name, :code, :latitude, :longitude)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_station
+    @station = Station.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def station_params
+    params.require(:station).permit(:name, :code, :latitude, :longitude)
+  end
+
 end

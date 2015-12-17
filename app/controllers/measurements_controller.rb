@@ -1,4 +1,5 @@
 class MeasurementsController < ApplicationController
+
   before_action :set_measurement, only: [:show, :update, :destroy]
 
   # GET /stations/:station_id/measurements
@@ -40,13 +41,15 @@ class MeasurementsController < ApplicationController
   # end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_measurement
-      @measurement = Measurement.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def measurement_params
-      params.require(:measurement).permit(:time, :source)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_measurement
+    @measurement = Measurement.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def measurement_params
+    params.require(:measurement).permit(:time, :source)
+  end
+
 end
