@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: eb0e8e216fcf535a1e6b82720dfb7639fcc20ff2
+  revision: 89f776402dbaca581ef4bb342bb89db922124c7a
   specs:
     actionmailer (5.0.0.alpha)
       actionpack (= 5.0.0.alpha)
@@ -90,7 +90,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets.git
-  revision: c35a637a26faa775912e24ee7e42d1e7dd2a39a5
+  revision: 5e32737e68485c47ae93966d73b593d6b6faf544
   specs:
     sprockets (4.0.0)
       concurrent-ruby (~> 1.0)
@@ -107,6 +107,7 @@ GEM
     builder (3.2.2)
     byebug (8.2.1)
     concurrent-ruby (1.0.0)
+    database_cleaner (1.5.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     factory_girl (4.5.0)
@@ -161,7 +162,7 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
     sass (3.4.20)
-    spring (1.5.0)
+    spring (1.6.0)
     thor (0.19.1)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
@@ -175,6 +176,7 @@ DEPENDENCIES
   arel!
   bcrypt (~> 3.1.7)
   byebug
+  database_cleaner
   factory_girl_rails
   geokit-rails
   pg (~> 0.18)
@@ -186,3 +188,6 @@ DEPENDENCIES
   sprockets!
   sprockets-rails!
   tzinfo-data
+
+BUNDLED WITH
+   1.10.6
