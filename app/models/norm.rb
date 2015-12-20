@@ -4,6 +4,6 @@ class Norm < ActiveRecord::Base
 
   default_scope { order('interval::interval, level') }
 
-  belongs_to :subject, primary_key: 'code', foreign_key: 'subject_code'
+  belongs_to :subject
 
 end

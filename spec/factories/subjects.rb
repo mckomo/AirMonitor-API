@@ -11,7 +11,7 @@ FactoryGirl.define do
     end
 
     after(:create) do |subject, evaluator|
-      create_list(:norm, evaluator.norm_count, subject_code: subject.code)
+      create_list(:norm, evaluator.norm_count, subject: subject)
     end
 
   end

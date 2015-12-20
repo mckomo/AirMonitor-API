@@ -4,7 +4,7 @@ unless User.exists?(email: 'mckomo@gmail.com')
 
   puts 'Initial seed'
 
-  user = User.create!({ email: 'mckomo@gmail.com', password: 'passwordToChange' })
+  user = User.create!({ name: 'Mckomo', email: 'mckomo@gmail.com', password: 'passwordToChange' })
 
   stations = Station.create!([
     { name: 'Kraków, Aleja Krasińskiego', code: 'PL0012A', latitude: 50.057678, longitude: 19.926189, user_id: user.id },
@@ -22,15 +22,15 @@ unless User.exists?(email: 'mckomo@gmail.com')
   ])
 
   norms = Norm.create!([
-    { subject_code: 'NO2', level: 0, value: 200, interval: '1 hour' },
-    { subject_code: 'NO2', level: 2, value: 400, interval: '1 hour' },
-    { subject_code: 'NO2', level: 0,  value: 40, interval: '1 year' },
-    { subject_code: 'CO', level: 0, value: 10 * 1000, interval: '8 hours' },
-    { subject_code: 'CO', level: 0, value: 5, interval: '1 year' },
-    { subject_code: 'PM10', level: 0, value: 50, interval: '1 day' },
-    { subject_code: 'PM10', level: 1, value: 200, interval: '1 day' },
-    { subject_code: 'PM10', level: 2, value: 300, interval: '1 day' },
-    { subject_code: 'PM2.5', level: 0, value: 25, interval: '1 year' },
+    { subject: Subject.find_by(code: 'NO2'), level: 0, value: 200, interval: '1 hour' },
+    { subject: Subject.find_by(code: 'NO2'), level: 2, value: 400, interval: '1 hour' },
+    { subject: Subject.find_by(code: 'NO2'), level: 0,  value: 40, interval: '1 year' },
+    { subject: Subject.find_by(code: 'CO'), level: 0, value: 10 * 1000, interval: '8 hours' },
+    { subject: Subject.find_by(code: 'CO'), level: 0, value: 5, interval: '1 year' },
+    { subject: Subject.find_by(code: 'PM10'), level: 0, value: 50, interval: '1 day' },
+    { subject: Subject.find_by(code: 'PM10'), level: 1, value: 200, interval: '1 day' },
+    { subject: Subject.find_by(code: 'PM10'), level: 2, value: 300, interval: '1 day' },
+    { subject: Subject.find_by(code: 'PM2.5'), level: 0, value: 25, interval: '1 year' },
   ])
 
 
@@ -40,25 +40,25 @@ unless User.exists?(email: 'mckomo@gmail.com')
 
     measurement_header = {
        source: 'http://monitoring.krakow.pios.gov.pl',
-       time: DateTime.parse("#{time} 11.12.2015"),
-       station: stations.find{ |s| s.code.eql?('PL0012A') },
+       time: DateTime.parse("#{time} #{Time.now.strftime('%F')}"),
+       station: Station.find_by(code: 'PL0012A'),
        user: user
     }
 
     Measurement.create!([
-      measurement_header.merge({ subject_code: 'NO2', value: no2 }),
-      measurement_header.merge({ subject_code: 'NOx', value: nox }),
-      measurement_header.merge({ subject_code: 'NO', value: no }),
-      measurement_header.merge({ subject_code: 'CO', value: co }),
-      measurement_header.merge({ subject_code: 'PM10', value: pm10 }),
-      measurement_header.merge({ subject_code: 'PM2.5', value: pm25 })
+      measurement_header.merge({ subject: Subject.find_by(code: 'NO2'), value: no2 }),
+      measurement_header.merge({ subject: Subject.find_by(code: 'NOx'), value: nox }),
+      measurement_header.merge({ subject: Subject.find_by(code: 'NO'), value: no }),
+      measurement_header.merge({ subject: Subject.find_by(code: 'CO'), value: co }),
+      measurement_header.merge({ subject: Subject.find_by(code: 'PM10'), value: pm10 }),
+      measurement_header.merge({ subject: Subject.find_by(code: 'PM2.5'), value: pm25 })
     ])
 
   end
 
 else
 
-  puts 'Seed with random measurements'
+  puts 'Seeding with random measurements'
 
   no2 = rand(0 .. 300)
   nox = rand(0 .. 1000)
@@ -75,12 +75,12 @@ else
    }
 
   Measurement.create!([
-      measurement_header.merge({ subject_code: 'NO2', value: no2}),
-      measurement_header.merge({ subject_code: 'NOx', value: nox }),
-      measurement_header.merge({ subject_code: 'NO', value: no }),
-      measurement_header.merge({ subject_code: 'CO', value: co }),
-      measurement_header.merge({ subject_code: 'PM10', value: pm10 }),
-      measurement_header.merge({ subject_code: 'PM2.5', value: pm25 })
+      measurement_header.merge({ subject: Subject.find_by(code: 'NO2'), value: no2 }),
+      measurement_header.merge({ subject: Subject.find_by(code: 'NOx'), value: nox }),
+      measurement_header.merge({ subject: Subject.find_by(code: 'NO'), value: no }),
+      measurement_header.merge({ subject: Subject.find_by(code: 'CO'), value: co }),
+      measurement_header.merge({ subject: Subject.find_by(code: 'PM10'), value: pm10 }),
+      measurement_header.merge({ subject: Subject.find_by(code: 'PM2.5'), value: pm25 })
   ])
 
 end
