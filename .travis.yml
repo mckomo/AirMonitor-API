@@ -1,0 +1,23 @@
+sudo: required
+
+language: ruby
+
+rvm:
+  - 2.2.3
+
+services:
+  - docker
+
+before_install:
+  - docker-compose build
+  - docker-compose up -d && docker ps
+
+install: sleep 5 # Wait for docker-compose
+
+before_script:
+  - docker-compose run web bundle exec rake db:drop RAILS_ENV=test
+  - docker-compose run web bundle exec rake db:create RAILS_ENV=test
+  - docker-compose run web bundle exec rake db:migrate RAILS_ENV=test
+
+script:
+  - docker-compose run web bundle exec rake spec RAILS_ENV=test
