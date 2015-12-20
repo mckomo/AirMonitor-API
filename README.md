@@ -1,5 +1,7 @@
 # AirMonitor
 
+[![Build Status](https://travis-ci.org/mckomo/AirMonitor.svg?branch=master)](https://travis-ci.org/mckomo/AirMonitor)
+
 AirMonitor is a web service that provides data about air pollution. 
 
 ## Endpoints
@@ -29,31 +31,11 @@ Get the measurement station object with the latest measurements.
 
 ```
 {  
-{  
    "id":"4b1a8852-0eeb-4dbb-b8cb-4caf4b47ba8f",
    "code":"PL0012A",
    "name":"Kraków, Aleja Krasińskiego",
    "latitude":50.057678,
    "longitude":19.926189,
-   "latest_measurements":[  
-      {  
-         "id":"2a1ecf09-9bd0-4a45-aefa-e4951bea6d4f",
-         "value":77.0,
-         "time":"2015-12-12T00:48:07.411Z",
-         "source":"http://monitoring.krakow.pios.gov.pl",
-         "subject":{  
-            "code":"NO2",
-            "name":"Dwutlenek azotu",
-            "unit":"µg/m\u003csup\u003e3\u003c/sup\u003e"
-         },
-         "norm":{  
-            "value":200.0,
-            "level":"permissible",
-            "interval":"1 hour"
-         }
-      },
-      ...
-   }
    "created_at":"2015-12-12T00:41:44.366Z",
    "updated_at":"2015-12-12T00:41:44.366Z",
    "creator":{  
@@ -83,9 +65,6 @@ Get station's measurements from last week.
          "name":"Dwutlenek azotu",
          "unit":"µg/m\u003csup\u003e3\u003c/sup\u003e"
       },
-      "creator":{  
-         "email":"mckomo@gmail.com"
-      }
    },
    ...
 ]
