@@ -14,7 +14,6 @@ module RailsJwt
     private
 
     def subscriber
-      p env
       env['jwt.token.payload'].try(:fetch, 'sub', 0)
     end
 
