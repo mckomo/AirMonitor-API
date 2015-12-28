@@ -7,9 +7,9 @@ unless User.exists?(email: 'mckomo@gmail.com')
   user = User.create!({ name: 'Mckomo', email: 'mckomo@gmail.com', password: 'passwordToChange' })
 
   stations = Station.create!([
-    {name: 'Kraków, Aleja Krasińskiego', code: 'PL0012A', latitude: 50.057678, longitude: 19.926189, subscriber: user.id },
-    {name: 'Kraków, Bujaka', code: 'PL0501A', latitude: 50.010575, longitude: 19.949189, subscriber: user.id },
-    {name: 'Kraków, Nowa Huta', code: 'PL0039A', latitude: 50.069308, longitude: 20.053492, subscriber: user.id }
+    {name: 'Kraków, Aleja Krasińskiego', code: 'PL0012A', latitude: 50.057678, longitude: 19.926189, user: user },
+    {name: 'Kraków, Bujaka', code: 'PL0501A', latitude: 50.010575, longitude: 19.949189, user: user },
+    {name: 'Kraków, Nowa Huta', code: 'PL0039A', latitude: 50.069308, longitude: 20.053492, user: user }
   ])
 
   subjects = Subject.create!([
@@ -73,6 +73,8 @@ else
        station: Station.where(code: 'PL0012A').take,
        user: User.where(email: 'mckomo@gmail.com').take
    }
+
+  p measurement_header[:user]
 
   Measurement.create!([
       measurement_header.merge({ subject: Subject.find_by(code: 'NO2'), value: no2 }),
