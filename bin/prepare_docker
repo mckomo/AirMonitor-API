@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+docker-compose run web bundle exec rake db:drop
+docker-compose run web bundle exec rake db:create
+docker-compose run web bundle exec rake db:migrate
+docker-compose run web bundle exec rake db:seed

@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "Stations", :type => :request do
 
-  describe 'GET /stations' do
+  describe 'GET /api/v1/stations' do
 
     let!(:stations) { create_list(:station, 5) }
 
-    before { get stations_path }
+    before { get api_v1_stations_path }
 
     it 'is successful' do
       expect(response).to have_http_status(200)
@@ -22,11 +22,11 @@ RSpec.describe "Stations", :type => :request do
 
   end
 
-  describe 'GET /stations/:id' do
+  describe 'GET /api/v1/stations/:id' do
 
     subject(:station) { create(:station) }
 
-    before { get station_path(station.id) }
+    before { get api_v1_station_path(station.id) }
 
     it 'is successful' do
       expect(response).to have_http_status(200)
@@ -39,7 +39,7 @@ RSpec.describe "Stations", :type => :request do
     context 'with invalid id' do
 
       it 'fails with RecordNotFound' do
-        expect { get station_path('invalid_id') }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { get api_v1_station_path('invalid_id') }.to raise_error(ActiveRecord::RecordNotFound)
       end
 
     end

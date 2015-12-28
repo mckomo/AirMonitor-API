@@ -7,7 +7,7 @@ class CreateMeasurements < ActiveRecord::Migration
       t.string :source,       null: false, limit: 256,  default: ''
       t.uuid :subject_id,     null: false, index: true, foreign_key: true
       t.uuid :station_id,     null: false, index: true, foreign_key: true
-      t.uuid :user_id,        null: false, index: true, foreign_key: true
+      t.uuid :subscriber, null: false, index: true, foreign_key: true
       t.datetime :created_at, null: false
     end
 

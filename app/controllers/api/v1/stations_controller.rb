@@ -1,6 +1,7 @@
-class StationsController < ApplicationController
+module API::V1
+  class StationsController < ApplicationController
 
-  before_action :set_station, only: [:show, :update, :destroy]
+  before_action :set_station, only: [:show]
 
   # GET /stations
   def index
@@ -51,4 +52,5 @@ class StationsController < ApplicationController
     params.require(:station).permit(:name, :code, :latitude, :longitude)
   end
 
+  end
 end
