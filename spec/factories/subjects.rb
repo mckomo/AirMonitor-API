@@ -5,6 +5,7 @@ FactoryGirl.define do
     code 'CODE'
     name 'Subject name'
     unit 'unit'
+    user
 
     transient do
       norm_count 3

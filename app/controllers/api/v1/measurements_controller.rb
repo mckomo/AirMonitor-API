@@ -5,7 +5,8 @@ module API::V1
 
     # GET /stations/:station_id/measurements
     def index
-      @measurements = Measurement.includes(:user, :subject, :norms).where(station_id: params[:station_id], time: Time.now.all_week)
+      @measurements = Measurement.includes(:user, :subject, :norms)
+                          .where(station_id: params[:station_id], time: Time.now.all_week)
 
       render json: @measurements, each_serializer: MeasurementPreviewSerializer
     end

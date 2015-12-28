@@ -5,5 +5,6 @@ class Norm < ActiveRecord::Base
   default_scope { order('interval::interval, level') }
 
   belongs_to :subject
+  belongs_to :user
 
 end

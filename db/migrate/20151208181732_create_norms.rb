@@ -6,6 +6,7 @@ class CreateNorms < ActiveRecord::Migration
       t.integer :level,       null: false, index: true
       t.string :interval,     null: false, limit: 32
       t.uuid :subject_id,     null: false, index: true, foreign_key: true
+      t.uuid :user_id,        null: false, index: true, foreign_key: true
       t.timestamps
     end
 

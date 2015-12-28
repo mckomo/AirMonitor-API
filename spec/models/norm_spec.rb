@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Subject, :type => :model do
 
-  subject { create(:subject) }
+  subject { create(:norm, subject: create(:subject)) }
 
-  it 'has norms' do
-    expect(subject.norms).not_to be_empty
+  it 'has the subject' do
+    expect(subject.subject).to be_a(Subject)
   end
 
   it 'has the user' do

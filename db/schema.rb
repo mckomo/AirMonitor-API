@@ -36,10 +36,12 @@ ActiveRecord::Schema.define(version: 20151208181732) do
     t.integer  "level",                 null: false
     t.string   "interval",   limit: 32, null: false
     t.uuid     "subject_id",            null: false
+    t.uuid     "user_id",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["level"], name: "index_norms_on_level", using: :btree
     t.index ["subject_id"], name: "index_norms_on_subject_id", using: :btree
+    t.index ["user_id"], name: "index_norms_on_user_id", using: :btree
   end
 
   create_table "stations", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
@@ -58,9 +60,11 @@ ActiveRecord::Schema.define(version: 20151208181732) do
     t.string   "code",       limit: 16, null: false
     t.string   "name",       limit: 32, null: false
     t.string   "unit",       limit: 16, null: false
+    t.uuid     "user_id",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["code"], name: "index_subjects_on_code", using: :btree
+    t.index ["user_id"], name: "index_subjects_on_user_id", using: :btree
   end
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
