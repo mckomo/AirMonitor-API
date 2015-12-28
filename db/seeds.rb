@@ -73,9 +73,7 @@ else
        station: Station.where(code: 'PL0012A').take,
        user: User.where(email: 'mckomo@gmail.com').take
    }
-
-  p measurement_header[:user]
-
+  
   Measurement.create!([
       measurement_header.merge({ subject: Subject.find_by(code: 'NO2'), value: no2 }),
       measurement_header.merge({ subject: Subject.find_by(code: 'NOx'), value: nox }),
