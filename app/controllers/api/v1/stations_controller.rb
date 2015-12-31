@@ -49,7 +49,7 @@ module API::V1
 
   # Only allow a trusted parameter "white list" through.
   def station_params
-    params.require(:station).permit(:name, :code, :latitude, :longitude)
+    params.require(:station).permit(:name, :identifier_code, :latitude, :longitude)
   end
 
   end

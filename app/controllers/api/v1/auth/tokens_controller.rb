@@ -13,7 +13,7 @@ module API::V1::Auth
     end
 
     def authorize!
-      raise RailsJwt::Errors::UnauthorizedAccessError unless user.try(:authenticate, auth_params[:password])
+      raise Errors::UnauthorizedAccessError unless user.try(:authenticate, auth_params[:password])
     end
 
     # Only allow a trusted parameter "white list" through.

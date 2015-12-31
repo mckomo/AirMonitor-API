@@ -1,13 +1,13 @@
 module API::V1
   class UsersController < ApplicationController
 
-    include RailsJwt::Authenticable
+    include Authenticable
 
     before_action :authenticate!, only: [:show]
 
     # GET /users/1
     def show
-      render json: @user
+      render  json: @user
     end
 
     # POST /users
@@ -41,7 +41,7 @@ module API::V1
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password)
     end
 
   end

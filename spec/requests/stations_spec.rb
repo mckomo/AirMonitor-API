@@ -38,8 +38,10 @@ RSpec.describe "Stations", :type => :request do
 
     context 'with invalid id' do
 
-      it 'fails with RecordNotFound' do
-        expect { get api_v1_station_path('invalid_id') }.to raise_error(ActiveRecord::RecordNotFound)
+      before { get api_v1_station_path('invalid_id') }
+
+      it 'fails with Not Found status code' do
+        expect(response).to have_http_status(404)
       end
 
     end
