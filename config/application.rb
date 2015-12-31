@@ -10,7 +10,6 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
-require_relative '../lib/rails_jwt'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -19,13 +18,13 @@ Bundler.require(*Rails.groups)
 module AirMonitor
   class Application < Rails::Application
 
+    config.autoload_paths << Rails.root.join('lib')
+
     config.api_only = true
 
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
     end
-
-    config.middleware.use RailsJwt::Middleware
 
   end
 end

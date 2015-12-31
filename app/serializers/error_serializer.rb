@@ -1,5 +1,5 @@
 class ErrorSerializer < ActiveModel::Serializer
 
-  attributes :message, :exception, :status
+  attributes :message, :exception, :code
 
 end
