@@ -16,5 +16,5 @@ class Measurement < ActiveRecord::Base
   validates :subject, presence: true
   validates :station, presence: true
   validates :user,    presence: true
-  
+
 end
