@@ -7,9 +7,9 @@ unless User.exists?(email: 'mckomo@gmail.com')
   user = User.create!({ name: 'Mckomo', email: 'mckomo@gmail.com', password: 'passwordToChange' })
 
   stations = Station.create!([
-    {name: 'Kraków, Aleja Krasińskiego', code: 'PL0012A', latitude: 50.057678, longitude: 19.926189, user: user },
-    {name: 'Kraków, Bujaka', code: 'PL0501A', latitude: 50.010575, longitude: 19.949189, user: user },
-    {name: 'Kraków, Nowa Huta', code: 'PL0039A', latitude: 50.069308, longitude: 20.053492, user: user }
+    { name: 'Kraków, Aleja Krasińskiego', code: 'PL0012A', latitude: 50.057678, longitude: 19.926189, user: user },
+    { name: 'Kraków, Bujaka', code: 'PL0501A', latitude: 50.010575, longitude: 19.949189, user: user },
+    { name: 'Kraków, Nowa Huta', code: 'PL0039A', latitude: 50.069308, longitude: 20.053492, user: user }
   ])
 
   subjects = Subject.create!([
@@ -24,7 +24,7 @@ unless User.exists?(email: 'mckomo@gmail.com')
   norms = Norm.create!([
     { subject: Subject.find_by(code: 'NO2'), level: 0, value: 200, interval: '1 hour', user: user },
     { subject: Subject.find_by(code: 'NO2'), level: 2, value: 400, interval: '1 hour', user: user },
-    { subject: Subject.find_by(code: 'NO2'), level: 0,  value: 40, interval: '1 year', user: user },
+    { subject: Subject.find_by(code: 'NO2'), level: 0, value: 40, interval: '1 year', user: user },
     { subject: Subject.find_by(code: 'CO'), level: 0, value: 10 * 1000, interval: '8 hours', user: user },
     { subject: Subject.find_by(code: 'CO'), level: 0, value: 5, interval: '1 year', user: user },
     { subject: Subject.find_by(code: 'PM10'), level: 0, value: 50, interval: '1 day', user: user },
