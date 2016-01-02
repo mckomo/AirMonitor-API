@@ -7,7 +7,7 @@ module API::V1
     before_action :set_station, only: [:index, :create]
     before_action :set_measurement, only: [:show]
 
-    # GET /stations/:station_id/measurements
+    # GET /api/v1/stations/:station_id/measurements
     def index
       @measurements = @station.measurements
                               .includes(:user, :subject, :norms)
@@ -16,12 +16,7 @@ module API::V1
       render json: @measurements, each_serializer: MeasurementPreviewSerializer
     end
 
-    # GET /measurements/:id
-    def show
-      render json: @measurement
-    end
-
-    # POST /measurements
+    # POST /api/v1/stations/:station_id/measurements
     def create
 
       @measurement = Measurement.new(measurement_params)
@@ -33,17 +28,13 @@ module API::V1
       end
 
     end
-    #
-    # # PATCH/PUT /measurements/1
-    # def update
-    #   if @measurement.update(measurement_params)
-    #     render json: @measurement
-    #   else
-    #     render json: @measurement.errors, status: :unprocessable_entity
-    #   end
-    # end
-    #
-    # # DELETE /measurements/1
+
+    # GET /api/v1/measurements/:id
+    def show
+      render json: @measurement
+    end
+
+    # # DELETE /api/v1/measurements/:id
     # def destroy
     #   @measurement.destroy
     # end
@@ -63,10 +54,11 @@ module API::V1
 
     # Only allow a trusted parameter "white list" through.
     def measurement_params
-      params.require(:measurement).permit(:value, :time, :source, :subject_id).tap do |p|
-        p[:station_id] = @station.id
-        p[:user_id] = @user.id
-      end
+      params.require(:measurement).permit(:value, :time, :source, :subject_id).merge(associations_params)
+    end
+
+    def associations_params
+      { station_id: @station.id, user_id: @user.id }
     end
 
   end

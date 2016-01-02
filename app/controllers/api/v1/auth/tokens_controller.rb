@@ -1,19 +1,20 @@
 module API::V1::Auth
   class TokensController < ApplicationController
 
+    before_action :authenticate!, only: [:create]
+
     def create
-      authorize!
       render json: { token: RailsJwt::Token.for(user) }, status: :created
     end
 
     private
 
-    def user
-      @user ||= User.find_by(email: auth_params[:email])
+    def authenticate!
+      raise Errors::UnauthorizedAccessError unless user.try(:authenticate, auth_params[:password])
     end
 
-    def authorize!
-      raise Errors::UnauthorizedAccessError unless user.try(:authenticate, auth_params[:password])
+    def user
+      @user ||= User.find_by(email: auth_params[:email])
     end
 
     # Only allow a trusted parameter "white list" through.
