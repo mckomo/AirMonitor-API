@@ -6,5 +6,9 @@ module Errors
 
     identify_by_code 401
 
+    def initialize(message = 'Unauthorized access error')
+      super(message)
+    end
+
   end
 end
