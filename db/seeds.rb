@@ -4,7 +4,7 @@ unless User.exists?(email: 'mckomo@gmail.com')
 
   puts 'Initial seed'
 
-  user = User.create!({ name: 'Mckomo', email: 'mckomo@gmail.com', password: 'passwordToChange' })
+  user = User.create!({ name: 'Mckomo', email: 'mckomo@gmail.com', password: 'passwordToChange', status: :active })
 
   stations = Station.create!([
     { name: 'Kraków, Aleja Krasińskiego', code: 'PL0012A', latitude: 50.057678, longitude: 19.926189, user: user },

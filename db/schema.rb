@@ -68,9 +68,10 @@ ActiveRecord::Schema.define(version: 20151208181732) do
   end
 
   create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
+    t.string   "name",            limit: 64,             null: false
+    t.string   "email",                                  null: false
+    t.string   "password_digest",                        null: false
+    t.integer  "status",                     default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
