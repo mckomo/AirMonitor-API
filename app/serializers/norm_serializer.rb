@@ -1,7 +1,8 @@
 class NormSerializer < ActiveModel::Serializer
 
-  attributes :value, :interval, :level, :created_at, :updated_at
+  attributes :id, :value, :interval, :level
 
-  belongs_to :subject, key: 'subject'
+  belongs_to :subject, serializer: SubjectPreviewSerializer
+  belongs_to :user, serializer: UserPreviewSerializer, key: 'creator'
 
 end

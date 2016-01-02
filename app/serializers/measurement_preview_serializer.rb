@@ -1,12 +1,11 @@
 class MeasurementPreviewSerializer < ActiveModel::Serializer
 
-  attributes :id, :value, :time, :source, :norm
+  attributes :id, :value, :time, :source, :norms
 
   belongs_to :subject, serializer: SubjectPreviewSerializer
-  belongs_to :user, serializer: UserPreviewSerializer, key: 'creator'
 
-  def norm
-    NormPreviewSerializer.new(object.norms.take).attributes
+  def norms
+    object.norms.map { |n| NormPreviewSerializer.new(n).attributes }
   end
 
 end
