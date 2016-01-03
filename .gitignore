@@ -15,3 +15,6 @@
 
 # Ignore RubyMine
 /.idea
+
+# Ignore environment specific files
+.rbenv-vars
