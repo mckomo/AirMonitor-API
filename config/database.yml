@@ -18,6 +18,6 @@ test:
 
 production:
   <<: *default
-  database: AirMonitor_production
-  username: AirMonitor
+  database: air-monitor_production
+  username: air-monitor
   password: <%= ENV['AIRMONITOR_DATABASE_PASSWORD'] %>
