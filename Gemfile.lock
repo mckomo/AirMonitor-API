@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: a0a62da235e8d87795d6cef6613ddf440386b366
+  revision: 3273c61b2b203ba1b1c42c76f2e5e8fad531862e
   specs:
     actioncable (5.0.0.beta1)
       actionpack (= 5.0.0.beta1)
@@ -267,4 +267,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
