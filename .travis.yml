@@ -2,9 +2,6 @@ sudo: required
 
 language: ruby
 
-rvm:
-  - 2.2.3
-  
 notifications:
   slack: knpdev:mUglr76kK4oYmWvBs6yYeNj2
 
