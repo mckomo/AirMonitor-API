@@ -4,7 +4,7 @@ RSpec.describe 'Auth', :type => :request do
 
   describe 'POST /api/v1/auth/tokens' do
 
-    let(:user) { create(:user) }
+    let(:user) { create(:active_user) }
 
     before { post api_v1_auth_tokens_path auth }
 

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  enum status: [:inactive, :active]
+  enum status: [:inactive, :active, :deleted]
 
   has_many :stations
   has_many :measurements
@@ -10,12 +10,12 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 64 }
   validates :email, presence: true
 
-  before_create :activate
-
-  private
-
   def activate
-    self.status = :active
+    self.update(status: :active)
+  end
+
+  def delete
+    self.update(status: :deleted)
   end
 
 end
