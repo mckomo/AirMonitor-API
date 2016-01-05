@@ -29,16 +29,4 @@ RSpec.describe 'Users', :type => :request do
 
   end
 
-  describe 'POST /me' do
-
-    let(:user_params) { { user: { name: 'Mckomo', email: 'mckomo@example.com', password: 'PaSSw0RD' } } }
-
-    before { post api_v1_registration_path, params: user_params }
-
-    it 'is successful with the 201 status' do
-      expect(response).to have_http_status(201)
-    end
-
-  end
-
 end
