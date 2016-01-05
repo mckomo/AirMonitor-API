@@ -18,7 +18,7 @@ Bundler.require(*Rails.groups)
 module AirMonitor
   class Application < Rails::Application
 
-    config.autoload_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib')
 
     config.api_only = true
 
