@@ -1,5 +1,5 @@
 module API::V1::Auth
-  class TokensController < ApplicationController
+  class TokensController < API::BaseController
 
     before_action :set_user, only: [:create]
     before_action :authenticate!, only: [:create]

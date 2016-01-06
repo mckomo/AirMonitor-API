@@ -1,5 +1,5 @@
 module API::V1
-  class StationsController < ApplicationController
+  class StationsController < API::BaseController
 
   before_action :set_station, only: [:show]
 
