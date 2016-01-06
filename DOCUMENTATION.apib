@@ -9,7 +9,7 @@ AirMonitor is a simple API for air pollution measurement system. Source code is 
 
 Main goal of the *AirMonitor* is to make information about air pollution widely available, thus *read* operations do not require any form of authorization. 
 However if you interested in sharing your own data you will be required to register a new account. 
-E-mail and password used during registration process will be your credentials necessary to obtain an access token. 
+E-mail and password used during registration process will be your credentials necessary to obtain an [access token](#access-token-post). 
 Access token is used in form of the **Bearer token** and must be places in `Authorization` header for each restricted API request.
 Example of such a header is provided below.
 
@@ -73,18 +73,12 @@ Get specific measurement station.
 
 + Response 200 (application/json)
 
-        {  
-            "id":"13f99447-dd96-4ee9-b218-191a9a1c1416",
-            "code":"PL0012A",
-            "name":"Kraków, Aleja Krasińskiego",
-            "latitude":50.057678,
-            "longitude":19.926189,
-            "created_at":"2015-12-28T21:46:17.258Z",
-            "updated_at":"2015-12-28T21:46:17.258Z",
-            "creator":{  
-                "name":"Mckomo"
-            }
-        } 
+        {
+          "id": "f7bf85d4-1a6f-481d-b8d4-349bafa411c3",
+          "name": "Mckomo",
+          "email": "mckomo@gmail.com",
+          "joined_at": "2016-01-02T17:51:08.507Z"
+        }
 
 ## Stations Collection [/api/v1/stations]
 
