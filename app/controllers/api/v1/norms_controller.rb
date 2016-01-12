@@ -1,5 +1,5 @@
 module API::V1
-  class NormsController < API::BaseController
+  class NormsController < API::ApiController
 
     # GET /api/v1/norms
     def index

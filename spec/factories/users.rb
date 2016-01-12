@@ -11,7 +11,11 @@ FactoryGirl.define do
     password 'password'
 
     factory :active_user do
-      status :active
+
+      after(:create) do |user|
+        user.confirm
+      end
+
     end
 
   end

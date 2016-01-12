@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-
-  has_secure_password
-
-  enum status: [:inactive, :active, :deleted]
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :confirmable, :validatable
 
   has_many :stations
   has_many :measurements
@@ -10,12 +10,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 64 }
   validates :email, presence: true
 
-  def activate
-    self.update(status: :active)
-  end
-
-  def delete
-    self.update(status: :deleted)
-  end
+  alias :active? :confirmed?
 
 end

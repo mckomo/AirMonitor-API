@@ -1,5 +1,5 @@
 module API::V1
-  class UsersController < API::BaseController
+  class UsersController < API::ApiController
 
     include Authenticable
 
