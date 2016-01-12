@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+RUBY_VERSION=`curl https://raw.githubusercontent.com/mckomo/AirMonitor/master/.RUBY_VERSION`
+
+sudo -v
+
+sudo apt-get update
+sudo apt-get upgrade
+
+# Add Passenger and Nginx APT repository
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+sudo apt-get install -y apt-transport-https ca-certificates
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+sudo apt-get install -y apt-transport-https ca-certificates
+sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main > /etc/apt/sources.list.d/passenger.list'
+sudo apt-get update
+
+# Install commmon dependencies
+sudo apt-get install -y nginx  nginx-extras
+sudo apt-get install -y postgresql postgresql-contrib libpq-dev
+
+# Install Ruby dependencies
+sudo apt-get install -y git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+
+# Install Rbenv
+cd ~
+git clone git://github.com/sstephenson/rbenv.git .rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+exec $SHELL
+git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+exec $SHELL
+
+# Install Rbenv plugins
+git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash #
+git clone https://github.com/rbenv/rbenv-vars.git ~/.rbenv/plugins/rbenv-vars
+
+# Install Ruby
+rbenv install $RUBY_VERSION
+rbenv global $RUBY_VERSION
+ruby -v
+
+# Install Bundler
+gem install bundler
+
+# Install Passenger
+sudo apt-get install -y nginx-extras passenger
+
+# Register Passenger with Nginx
+RUBY_PATH="/home/$(whoami)/.rbenv/shims/ruby"
+sudo sed -i 's/# passenger_root/passenger_root/' /etc/nginx/nginx.conf
+sudo sed -i 's/# passenger_ruby/passenger_ruby/' /etc/nginx/nginx.conf
+sudo sed -i "s#\(passenger_ruby\s*\).*#\1$RUBY_PATH;#" /etc/nginx/nginx.conf
+
+# Setup database
+DATABASE_PASSWORD=`openssl rand -base64 32`
+sudo su -c "echo -e \"$DATABASE_PASSWORD\n$DATABASE_PASSWORD\" | createuser -s -e -P air-monitor" postgres
+
+# Setup directory structure
+sudo mkdir -p /var/www/air-monitor/shared/config
+sudo chown -R `whoami`:`whoami` /var/www/air-monitor
+
+# Copy config
+curl https://raw.githubusercontent.com/mckomo/AirMonitor/master/config/database.production.yml > /var/www/air-monitor/shared/config/database.yml
+
+# Fill secrets
+cd /var/www/air-monitor/shared
+echo "AIRMONITOR_DATABASE_PASSWORD=$DATABASE_PASSWORD" > .rbenv-vars
+echo "JWT_SECRET=$(openssl rand -base64 32)" >> .rbenv-vars
+echo "SECRET_KEY_BASE=$(openssl rand -base64 32)" >> .rbenv-vars
