@@ -20,7 +20,7 @@ module AirMonitor
 
     config.eager_load_paths << Rails.root.join('lib')
 
-    config.api_only = true
+    config.i18n.default_locale = :pl
 
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid

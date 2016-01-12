@@ -1,5 +1,5 @@
 module API::V1
-  class SubjectsController < API::BaseController
+  class SubjectsController < API::ApiController
 
     # GET /api/v1/subjects
     def index

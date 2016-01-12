@@ -1,5 +1,5 @@
 module API
-  class BaseController < ApplicationController
+  class ApiController < ActionController::API
 
     def self.errors_to_rescue
        [Errors::UnauthorizedAccessError,

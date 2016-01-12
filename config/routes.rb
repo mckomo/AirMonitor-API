@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  root to: "home#index"
+
+  devise_for :users
+
+  devise_scope :user do
+    get "sign_up", to: "devise/registrations#new"
+    get "sign_in", to: "devise/sessions#new"
+    get "sign_out", to: "devise/sessions#destroy"
+  end
+
   namespace :api do
     namespace :v1 do
 
@@ -7,7 +17,6 @@ Rails.application.routes.draw do
         resources :tokens, only: [:create]
       end
 
-      post 'me', to: 'users#create', as: 'registration'
       get 'me', to: 'users#show', as: 'current_user'
 
       resources :stations

@@ -1,5 +1,5 @@
 module API::V1::Auth
-  class TokensController < API::BaseController
+  class TokensController < API::ApiController
 
     before_action :set_user, only: [:create]
     before_action :authenticate!, only: [:create]
@@ -15,7 +15,7 @@ module API::V1::Auth
     end
 
     def user_legit?
-      @user.present? and @user.active? and @user.authenticate(auth_params[:password])
+      @user.present? and @user.active? and @user.valid_password?(auth_params[:password])
     end
 
     def set_user

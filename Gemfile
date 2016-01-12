@@ -14,6 +14,8 @@ gem 'geokit-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt', '~> 1.5'
 
+gem 'devise', github: 'plataformatec/devise'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -25,6 +27,13 @@ gem 'active_model_serializers', '~> 0.10.0.rc2'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+
+gem 'jquery-rails'
+gem 'turbolinks'
+gem 'bootstrap-sass'
+gem 'bootswatch-rails', github: 'mckomo/bootswatch-rails', branch: 'feature-rails-5'
+gem "font-awesome-sass", github: 'sytzeloor/font-awesome-sass'
+# gem 'autoprefixer-rails'
 
 group :development, :test do
   gem 'byebug'
