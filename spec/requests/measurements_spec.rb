@@ -5,14 +5,14 @@ RSpec.describe "Measurements", :type => :request do
   let(:station) { create(:station) }
   let(:body) { JSON.parse(response.body) }
 
-  describe 'GET /api/v1/stations/:id/measurements' do
+  describe 'GET /api/v1/stations/:station_code/measurements' do
 
 
     context 'with the valid station id' do
 
       let!(:measurements) { create_list(:measurement, 5, station: station) }
 
-      before { get api_v1_station_measurements_path(station.id) }
+      before { get api_v1_station_measurements_path(station.code) }
 
       it 'is successful' do
         expect(response).to have_http_status(200)
@@ -56,7 +56,7 @@ RSpec.describe "Measurements", :type => :request do
 
   end
 
-  describe 'POST /api/v1/stations/:id/measurements' do
+  describe 'POST /api/v1/stations/:station_code/measurements' do
 
     context 'with the valid authentication token' do
 
@@ -65,7 +65,7 @@ RSpec.describe "Measurements", :type => :request do
       let(:subject) { create(:subject) }
       let(:measurement) { { measurement: { value: 100.0, time: Time.now, source: 'Test source', subject_id: subject.id} } }
 
-      before { post api_v1_station_measurements_path(station.id), params: measurement, headers: { 'Authorization' => token } }
+      before { post api_v1_station_measurements_path(station.code), params: measurement, headers: { 'Authorization' => token } }
 
       it 'is successful with Created status code' do
         expect(response).to have_http_status(201)

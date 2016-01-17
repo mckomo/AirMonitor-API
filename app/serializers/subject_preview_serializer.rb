@@ -1,5 +1,5 @@
 class SubjectPreviewSerializer < ActiveModel::Serializer
 
-  attributes :id, :code, :name, :unit
+  attributes :code, :name, :unit
 
 end

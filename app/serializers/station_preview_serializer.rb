@@ -1,5 +1,5 @@
 class StationPreviewSerializer < ActiveModel::Serializer
 
-  attributes :id, :code, :name, :latitude, :longitude
+  attributes :code, :name, :latitude, :longitude
 
 end

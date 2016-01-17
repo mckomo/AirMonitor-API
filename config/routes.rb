@@ -19,11 +19,10 @@ Rails.application.routes.draw do
 
       get 'me', to: 'users#show', as: 'current_user'
 
-      resources :stations
       resources :subjects, only: [:index]
       resources :norms, only: [:index]
 
-      resources :stations do
+      resources :stations, param: :code do
         resources :measurements, shallow: true
       end
 

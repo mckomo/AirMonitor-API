@@ -22,11 +22,11 @@ RSpec.describe "Stations", :type => :request do
 
   end
 
-  describe 'GET /api/v1/stations/:id' do
+  describe 'GET /api/v1/stations/:code' do
 
     subject(:station) { create(:station) }
 
-    before { get api_v1_station_path(station.id) }
+    before { get api_v1_station_path(station.code) }
 
     it 'is successful' do
       expect(response).to have_http_status(200)

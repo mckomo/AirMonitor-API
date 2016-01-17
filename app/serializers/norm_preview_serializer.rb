@@ -1,6 +1,6 @@
 class NormPreviewSerializer < ActiveModel::Serializer
 
-  attributes :id, :value, :level, :interval
+  attributes :value, :level, :interval
 
   belongs_to :subject, serializer: SubjectPreviewSerializer
 

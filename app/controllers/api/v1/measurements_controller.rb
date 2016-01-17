@@ -48,7 +48,7 @@ module API::V1
 
     # Use callbacks to share common setup or constraints between actions.
     def set_station
-      @station = Station.find(params[:station_id])
+      @station = Station.find_by_code!(params[:station_code])
     end
 
 
