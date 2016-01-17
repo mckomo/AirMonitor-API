@@ -1,5 +1,5 @@
 module API::V1
-  class MeasurementsController < API::ApiController
+  class MeasurementsController < API::EndpointController
 
     include Authenticable
 

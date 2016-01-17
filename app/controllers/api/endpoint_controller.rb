@@ -17,7 +17,7 @@ module API
              status: Errors.http_status_for(error)
     end
 
-    def route_not_found
+    def endpoint_not_found
       raise ActionController::RoutingError, 'Endpoint not found'
     end
 

@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  root to: "home#index"
+  root to: 'home#index'
 
   devise_for :users
 
   devise_scope :user do
-    get "sign_up", to: "devise/registrations#new"
-    get "sign_in", to: "devise/sessions#new"
-    get "sign_out", to: "devise/sessions#destroy"
+    get "sign_up", to: 'devise/registrations#new'
+    get "sign_in", to: 'devise/sessions#new'
+    get "sign_out", to: 'devise/sessions#destroy'
   end
 
   namespace :api do
@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       end
 
     end
+
+    match '*unmatched_route', :to => 'endpoint#endpoint_not_found', :via => :all
 
   end
 
