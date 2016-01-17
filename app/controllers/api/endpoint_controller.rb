@@ -1,5 +1,5 @@
 module API
-  class ApiController < ActionController::API
+  class EndpointController < ActionController::API
 
     def self.errors_to_rescue
        [Errors::UnauthorizedAccessError,
@@ -15,6 +15,10 @@ module API
              root: 'error',
              serializer: ErrorSerializer,
              status: Errors.http_status_for(error)
+    end
+
+    def route_not_found
+      raise ActionController::RoutingError, 'Endpoint not found'
     end
 
   end

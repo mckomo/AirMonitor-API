@@ -2,9 +2,10 @@ FactoryGirl.define do
 
   factory :subject do
 
-    code 'CODE'
-    name 'Subject name'
-    unit 'unit'
+    code    'CODE10'
+    symbol  'CODE<sub>10</sub>'
+    name    'Subject name'
+    unit    'unit'
     user
 
     transient do

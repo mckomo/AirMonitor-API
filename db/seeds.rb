@@ -13,12 +13,12 @@ unless User.exists?(email: 'mckomo@gmail.com')
   ])
 
   subjects = Subject.create!([
-    { code: 'NO2', name: 'Dwutlenek azotu', unit: 'µg/m<sup>3</sup>', user: user },
-    { code: 'NOx', name: 'Tlenki azotu', unit: 'µg/m<sup>3</sup>', user: user },
-    { code: 'NO', name: 'Tlenk azotu', unit: 'µg/m<sup>3</sup>', user: user },
-    { code: 'CO', name: 'Tlenek węgla', unit: 'µg/m<sup>3</sup>', user: user },
-    { code: 'PM10', name: 'Pył zawieszony PM10', unit: 'µg/m<sup>3</sup>', user: user },
-    { code: 'PM2.5', name: 'Pył zawieszony P2.5', unit: 'µg/m<sup>3</sup>', user: user},
+    { code: 'NO2', symbol: 'NO<sub>2</sub>', name: 'Dwutlenek azotu', unit: 'µg/m<sup>3</sup>', user: user },
+    { code: 'NOx', symbol: 'NO<sub>x</sub>', name: 'Tlenki azotu', unit: 'µg/m<sup>3</sup>', user: user },
+    { code: 'NO', symbol: 'NO', name: 'Tlenk azotu', unit: 'µg/m<sup>3</sup>', user: user },
+    { code: 'CO', symbol: 'CO', name: 'Tlenek węgla', unit: 'µg/m<sup>3</sup>', user: user },
+    { code: 'PM10', symbol: 'PM10', name: 'Pył zawieszony PM10', unit: 'µg/m<sup>3</sup>', user: user },
+    { code: 'PM2.5', symbol: 'PM2.5', name: 'Pył zawieszony P2.5', unit: 'µg/m<sup>3</sup>', user: user},
   ])
 
   norms = Norm.create!([

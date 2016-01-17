@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160106191737) do
 
   create_table "subjects", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "code",       limit: 16, null: false
+    t.string   "symbol",     limit: 32, null: false
     t.string   "name",       limit: 32, null: false
     t.string   "unit",       limit: 16, null: false
     t.uuid     "user_id",               null: false
