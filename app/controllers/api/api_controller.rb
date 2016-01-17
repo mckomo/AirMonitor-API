@@ -10,7 +10,11 @@ module API
     rescue_from *errors_to_rescue, with: :render_error
 
     def render_error(error)
-      render json: error, serializer: ErrorSerializer, status: http_status_for(error.code)
+      render json: error,
+             adapter: :json,
+             root: 'error',
+             serializer: ErrorSerializer,
+             status: Errors.http_status_for(error)
     end
 
   end
