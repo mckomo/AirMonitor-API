@@ -4,6 +4,7 @@ module API::V1
     include Authenticable
 
     before_action :authenticate!, only: [:create]
+    before_action :set_subject, only: [:create]
     before_action :set_station, only: [:index, :create]
     before_action :set_measurement, only: [:show]
 
@@ -41,24 +42,31 @@ module API::V1
 
     private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_measurement
       @measurement = Measurement.find(params[:id])
     end
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_station
       @station = Station.find_by_code!(params[:station_code])
     end
 
+    def set_subject
+      @subject = Subject.find_by_code(subject_code_param)
+    end
 
     # Only allow a trusted parameter "white list" through.
     def measurement_params
-      params.require(:measurement).permit(:value, :time, :source, :subject_id).merge(associations_params)
+      params.require(:measurement)
+          .permit(:value, :time, :source)
+          .merge(association_params)
     end
 
-    def associations_params
-      { station_id: @station.id, user_id: @user.id }
+    def association_params
+      { station: @station, user: @user, subject: @subject }
+    end
+
+    def subject_code_param
+      params[:measurement].try(:fetch, :subject_code)
     end
 
   end

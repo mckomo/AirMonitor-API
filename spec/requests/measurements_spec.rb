@@ -63,7 +63,7 @@ RSpec.describe "Measurements", :type => :request do
       let(:user) { create(:user) }
       let(:token) { "Bearer #{RailsJwt::Token.for(user)}" }
       let(:subject) { create(:subject) }
-      let(:measurement) { { measurement: { value: 100.0, time: Time.now, source: 'Test source', subject_id: subject.id} } }
+      let(:measurement) { { measurement: { value: 100.0, time: Time.now, source: 'Test source', subject_code: subject.code} } }
 
       before { post api_v1_station_measurements_path(station.code), params: measurement, headers: { 'Authorization' => token } }
 
