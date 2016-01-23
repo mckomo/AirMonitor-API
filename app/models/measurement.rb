@@ -22,7 +22,7 @@ class Measurement < ActiveRecord::Base
   validates_with Validators::OverlapValidator,
                  attribute: :time,
                  unique_around: 5.minutes,
-                 with_scope: [:subject_id, :subject_id]
+                 with_scope: [:subject_id, :station_id]
 
 end
 
