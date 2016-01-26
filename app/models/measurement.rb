@@ -19,9 +19,9 @@ class Measurement < ActiveRecord::Base
   validates :user,    presence: true
   validates :time,    presence: true
 
-  validates_with Validators::OverlapValidator,
-                 attribute: :time,
-                 unique_around: 5.minutes,
+  validates_with Validators::TimeSlotValidator,
+                 nothing_of: :time,
+                 in_between: 5.minutes,
                  with_scope: [:subject_id, :station_id]
 
 end

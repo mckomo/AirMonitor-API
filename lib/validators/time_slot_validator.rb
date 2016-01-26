@@ -1,28 +1,28 @@
 module Validators
 
-  class OverlapValidator < ActiveModel::Validator
+  class TimeSlotValidator < ActiveModel::Validator
 
     using Refinements::TimeWithZoneRefinements
 
     def initialize(options)
       super
-      @attribute = options[:attribute] || :created_at
-      @period = options[:sole_around] || 1.hour
+      @attribute = options[:nothing_of] || :created_at
+      @period = options[:in_between] || 1.hour
       @scope = options[:with_scope] || {}
     end
 
     def validate(record)
       @record = record
-      @record.errors[:base] << error_message if overlaps?
+      @record.errors[:base] << error_message if time_slot_nonempty?
     end
 
-    def overlaps?
-      @record.class.exists?(overlap_query)
+    def time_slot_nonempty?
+      @record.class.exists?(timeslot_query)
     end
 
     private
 
-    def overlap_query
+    def timeslot_query
       { @attribute => time_range }.merge(scope_query)
     end
 
@@ -41,7 +41,7 @@ module Validators
     end
 
     def error_message
-      "Record must have a #{@interval} time interval"
+      "There are other records in #{@time_range} time slot"
     end
 
   end

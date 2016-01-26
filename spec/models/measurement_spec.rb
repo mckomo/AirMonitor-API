@@ -12,12 +12,35 @@ RSpec.describe Measurement, :type => :model do
     expect(measurement.norms).not_to be_empty
   end
 
-  describe '.save' do
+  describe '.save!' do
 
-    let(:immediate_measurement) { build(:measurement, time: measurement.time + 4.minutes, station: measurement.station, subject: measurement.subject ) }
+    let(:new_measurement) { build(:measurement, time: Time.zone.parse('2015-01-26 20:00')) }
 
-    it 'fails with less than a 5 minutes time interval ' do
-      expect{ immediate_measurement.save! }.to raise_error ActiveRecord::RecordInvalid
+
+    context 'when there was similar measurement more than 5 minutes earlier or later' do
+
+      before { create(:measurement,
+                      time: new_measurement.time + [-6, 6].sample.minutes,
+                      station: new_measurement.station,
+                      subject: new_measurement.subject ) }
+
+      it 'succeeds' do
+        new_measurement.save!
+      end
+
+    end
+
+    context 'when there was similar measurement less than 5 minutes earlier or later' do
+
+      before { create(:measurement,
+                      time: new_measurement.time + rand(-5 .. 5).minutes,
+                      station: new_measurement.station,
+                      subject: new_measurement.subject ) }
+
+      it 'fails' do
+        expect{ new_measurement.save! }.to raise_error ActiveRecord::RecordInvalid
+      end
+
     end
 
   end
