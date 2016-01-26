@@ -41,7 +41,7 @@ module Validators
     end
 
     def error_message
-      "There are other records in #{@time_range} time slot"
+      "There are other records in #{time_range} time slot"
     end
 
   end
