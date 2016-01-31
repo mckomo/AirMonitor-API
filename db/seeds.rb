@@ -7,9 +7,12 @@ unless User.exists?(email: 'mckomo@gmail.com')
   user = User.create!({ name: 'Mckomo', email: 'mckomo@gmail.com', password: 'passwordToChange' })
 
   stations = Station.create!([
-    { name: 'Kraków, Aleja Krasińskiego', code: 'PL0012A', latitude: 50.057678, longitude: 19.926189, user: user },
-    { name: 'Kraków, Bujaka', code: 'PL0501A', latitude: 50.010575, longitude: 19.949189, user: user },
-    { name: 'Kraków, Nowa Huta', code: 'PL0039A', latitude: 50.069308, longitude: 20.053492, user: user }
+    { name: 'Kraków, Aleja Krasińskiego', code: 'MAL005', latitude: 50.057678, longitude: 19.926189, user: user },
+    { name: 'Kraków, Nowa Huta', code: 'MAL006', latitude: 50.069308, longitude: 20.053492, user: user },
+    { name: 'Kraków, Kurdwanów', code: 'MAL015', latitude: 50.010575, longitude: 19.949189, user: user },
+    { name: 'Kraków, Dielta', code: 'MAL028', latitude: 50.057447, longitude: 19.946008, user: user },
+    { name: 'Kraków, Piastów', code: 'MAL031', latitude: 50.099361, longitude: 20.018317, user: user },
+    { name: 'Kraków, Złoty Róg', code: 'MAL032', latitude: 50.081197, longitude: 19.895358, user: user },
   ])
 
   subjects = Subject.create!([
@@ -37,6 +40,10 @@ unless User.exists?(email: 'mckomo@gmail.com')
 
 else
 
+  if Rails.env.production?
+    puts 'Seeding with random data is prohibited on production environment' and exit(1)
+  end
+
   puts 'Seeding with random measurements'
 
   no2 = rand(0 .. 300)
@@ -49,7 +56,7 @@ else
   measurement_header = {
        source: 'http://monitoring.krakow.pios.gov.pl',
        time: Time.now,
-       station: Station.where(code: 'PL0012A').take,
+       station: Station.where(code: 'MAL005').take,
        user: User.where(email: 'mckomo@gmail.com').take
    }
 
