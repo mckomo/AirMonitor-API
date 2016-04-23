@@ -8,15 +8,6 @@ FactoryGirl.define do
 
     name 'User Name'
     email
-    password 'password'
-
-    factory :active_user do
-
-      after(:create) do |user|
-        user.confirm
-      end
-
-    end
 
   end
 

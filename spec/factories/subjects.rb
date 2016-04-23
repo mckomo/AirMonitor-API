@@ -2,14 +2,14 @@ FactoryGirl.define do
 
   factory :subject do
 
-    code    'CODE10'
-    symbol  'CODE<sub>10</sub>'
+    code
+    symbol
     name    'Subject name'
     unit    'unit'
     user
 
     transient do
-      norm_count 3
+      norm_count 0
     end
 
     after(:create) do |subject, evaluator|

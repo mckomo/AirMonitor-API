@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Subject, :type => :model do
 
-  subject { create(:subject) }
+  subject { create(:subject, norm_count: 3) }
 
   it 'has norms' do
     expect(subject.norms).not_to be_empty

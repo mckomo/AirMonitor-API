@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Norms', :type => :request do
 
-  describe 'GET /api/v1/subjects' do
+  describe 'GET /api/v1/norms' do
 
-    let!(:norms) { create_list(:norm, 3, subject: create(:subject, norm_count: 0)) }
+    let!(:norms) { create_list(:norm, 3, subject: create(:subject)) }
 
     before { get api_v1_norms_path }
 
@@ -13,11 +13,11 @@ RSpec.describe 'Norms', :type => :request do
     end
 
     it 'returns an array' do
-      expect(JSON.parse(response.body)).to be_a(Array)
+      expect(body).to be_a(Array)
     end
 
-    it 'contains all norms' do
-      expect(JSON.parse(response.body).count).to be(norms.count)
+    it 'returns all norms' do
+      expect(body.count).to be(norms.count)
     end
 
   end
