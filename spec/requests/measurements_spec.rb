@@ -1,18 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe "Measurements", :type => :request do
+RSpec.describe 'Measurements', :type => :request do
 
-  let(:station) { create(:station) }
-  let(:body) { JSON.parse(response.body) }
+  let!(:channel) { create(:channel) }
 
-  describe 'GET /api/v1/stations/:station_code/measurements' do
+  describe 'GET /api/v1/channels/:code/measurements' do
 
+    context 'with the valid channel code' do
 
-    context 'with the valid station id' do
-
-      let!(:measurements) { create_list(:measurement, 5, station: station) }
-
-      before { get api_v1_station_measurements_path(station.code) }
+      before { get api_v1_channel_measurements_path(channel.code) }
 
       it 'is successful' do
         expect(response).to have_http_status(200)
@@ -22,15 +18,15 @@ RSpec.describe "Measurements", :type => :request do
         expect(body).to be_a(Array)
       end
 
-      it 'returns all station\'s measurements' do
-        expect(body.count).to eq(measurements.count)
+      it 'returns all channel\'s measurements' do
+        expect(body.count).to eq(channel.measurements.count)
       end
 
     end
 
-    context 'with an invalid staion id' do
+    context 'with an invalid channel code' do
 
-      before { get api_v1_station_measurements_path('invalid id') }
+      before { get api_v1_channel_measurements_path('invalid id') }
 
       it 'is fails with Not Found status code' do
         expect(response).to have_http_status(404)
@@ -56,16 +52,15 @@ RSpec.describe "Measurements", :type => :request do
 
   end
 
-  describe 'POST /api/v1/stations/:station_code/measurements' do
+  describe 'POST /api/v1/channel/:code/measurements' do
+
+    let(:params) { Hash(measurement: measurement_params) }
 
     context 'with the valid authentication token' do
 
-      let(:user) { create(:user) }
-      let(:token) { "Bearer #{RailsJwt::Token.for(user)}" }
-      let(:subject) { create(:subject) }
-      let(:measurement) { { measurement: { value: 100.0, time: Time.now, source: 'Test source', subject_code: subject.code} } }
-
-      before { post api_v1_station_measurements_path(station.code), params: measurement, headers: { 'Authorization' => token } }
+      before { post api_v1_channel_measurements_path(channel.code),
+                    params: params,
+                    headers: token_header }
 
       it 'is successful with Created status code' do
         expect(response).to have_http_status(201)
@@ -75,7 +70,7 @@ RSpec.describe "Measurements", :type => :request do
 
     context 'without an authentication token' do
 
-      before { post api_v1_station_measurements_path(station.id) }
+      before { post api_v1_channel_measurements_path(channel.code, params: params) }
 
       it 'is successful with Created status code' do
         expect(response).to have_http_status(401)
@@ -85,4 +80,12 @@ RSpec.describe "Measurements", :type => :request do
 
   end
 
+end
+
+def measurement_params
+  {
+      value: 100.0,
+      time: Time.now,
+      source: 'Test source'
+  }
 end
