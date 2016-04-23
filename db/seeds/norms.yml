@@ -1,0 +1,61 @@
+---
+- id: b86e19ba-af15-43d2-8e90-a3363d61047c
+  value: 200.0
+  level: permissible
+  interval: 1 hour
+  subject_id: 93f89eb9-1c2d-4855-a9a0-f785afc333cc
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: f438da1b-9075-4f6b-bc35-2781cf028aeb
+  value: 400.0
+  level: alarming
+  interval: 1 hour
+  subject_id: 93f89eb9-1c2d-4855-a9a0-f785afc333cc
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: bfdb0d46-5f70-4f2d-815e-c2ad8aedacd6
+  value: 120.0
+  level: permissible
+  interval: 8 hours
+  subject_id: 38eb763c-f1b6-4174-baa9-16052f863d5b
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: ecb963aa-e1ae-44da-b8e6-77cb9a88247e
+  value: 10000.0
+  level: permissible
+  interval: 8 hours
+  subject_id: e85d1137-0dc2-4530-9dfb-fa798581324e
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 8210e190-b6fd-4d0b-bafc-f802a9290d59
+  value: 50.0
+  level: permissible
+  interval: 1 day
+  subject_id: 2e3b0090-71d0-4172-b62f-58121b801962
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 8fab43e0-f21c-4f55-be20-23bc15922997
+  value: 200.0
+  level: warning
+  interval: 1 day
+  subject_id: 2e3b0090-71d0-4172-b62f-58121b801962
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 2327a492-6f7f-491e-b981-3c0143610aad
+  value: 300.0
+  level: alarming
+  interval: 1 day
+  subject_id: 2e3b0090-71d0-4172-b62f-58121b801962
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 27314cd2-314e-4d7d-9dc0-a3890109a2b5
+  value: 5.0
+  level: permissible
+  interval: 1 year
+  subject_id: e85d1137-0dc2-4530-9dfb-fa798581324e
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 96a1641a-5020-4f7c-8c2e-f8a36ba35415
+  value: 40.0
+  level: permissible
+  interval: 1 year
+  subject_id: 93f89eb9-1c2d-4855-a9a0-f785afc333cc
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 5babb3f2-1e53-473d-a582-ae11769beff2
+  value: 25.0
+  level: permissible
+  interval: 1 year
+  subject_id: 7793b256-215f-4306-9e9c-dd0a2a8d733f
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0

@@ -1,0 +1,37 @@
+---
+- id: 362d9262-9dd2-47d6-8c20-0dbe64ccca5e
+  name: Kraków, Aleja Krasińskiego
+  code: MAL005
+  latitude: 50.057678
+  longitude: 19.926189
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 3572db8d-ff40-4612-9f6e-01814df405b0
+  name: Kraków, Nowa Huta
+  code: MAL006
+  latitude: 50.069308
+  longitude: 20.053492
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 246540b0-f9c6-455e-ba02-6049d6deff81
+  name: Kraków, Kurdwanów
+  code: MAL015
+  latitude: 50.010575
+  longitude: 19.949189
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 2fb2147c-d0bf-4b80-9c27-f51293c89124
+  name: Kraków, Dielta
+  code: MAL028
+  latitude: 50.057447
+  longitude: 19.946008
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 6c5dcc5c-077b-4c31-a9b1-a47cdbb711d8
+  name: Kraków, Piastów
+  code: MAL031
+  latitude: 50.099361
+  longitude: 20.018317
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 09b8a1d6-9433-4c54-9170-bdb58b6ae370
+  name: Kraków, Złoty Róg
+  code: MAL032
+  latitude: 50.081197
+  longitude: 19.895358
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0

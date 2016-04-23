@@ -1,0 +1,55 @@
+---
+- id: e1cd93f0-78f7-442f-b18d-2385bba009a6
+  code: SO2
+  symbol: SO<sub>2</sub>
+  name: Dwutlenek siarki węgla
+  unit: µg/m<sup>3</sup>
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 93f89eb9-1c2d-4855-a9a0-f785afc333cc
+  code: NO2
+  symbol: NO<sub>2</sub>
+  name: Dwutlenek azotu
+  unit: µg/m<sup>3</sup>
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: d0643d45-5b06-4ba2-9a0f-ff4422290e7f
+  code: NOx
+  symbol: NO<sub>x</sub>
+  name: Tlenki azotu
+  unit: µg/m<sup>3</sup>
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: b1f3cd13-24b4-4d30-9272-1a0301a1c3ae
+  code: 'NO'
+  symbol: 'NO'
+  name: Tlenk azotu
+  unit: µg/m<sup>3</sup>
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: e85d1137-0dc2-4530-9dfb-fa798581324e
+  code: CO
+  symbol: CO
+  name: Tlenek węgla
+  unit: µg/m<sup>3</sup>
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 38eb763c-f1b6-4174-baa9-16052f863d5b
+  code: O3
+  symbol: O<sub>3</sub>
+  name: Ozon
+  unit: µg/m<sup>3</sup>
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 764795f7-971e-48bf-89c0-a9988ea13715
+  code: BZN
+  symbol: C<sub>6</sub>H<sub>6</sub>
+  name: Benzen
+  unit: µg/m<sup>3</sup>
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 2e3b0090-71d0-4172-b62f-58121b801962
+  code: PM10
+  symbol: PM10
+  name: Pył zawieszony PM10
+  unit: µg/m<sup>3</sup>
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 7793b256-215f-4306-9e9c-dd0a2a8d733f
+  code: PM25
+  symbol: PM2.5
+  name: Pył zawieszony P2.5
+  unit: µg/m<sup>3</sup>
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
