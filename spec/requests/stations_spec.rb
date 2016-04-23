@@ -12,12 +12,26 @@ RSpec.describe "Stations", :type => :request do
       expect(response).to have_http_status(200)
     end
 
-    it 'returns an array' do
-      expect(JSON.parse(response.body)).to be_a(Array)
+    it 'responds in the JSON format' do
+
     end
 
-    it 'contains all stations' do
-      expect(JSON.parse(response.body).count).to be(stations.count)
+    describe 'response body' do
+
+      subject { JSON.parse(response.body) }
+
+      it 'is an array' do
+        expect(subject).to be_a(Array)
+      end
+
+      it 'contains stations' do
+        skip
+      end
+
+      it 'has all stations' do
+        expect(subject.count).to eq(stations.count)
+      end
+
     end
 
   end
@@ -26,19 +40,29 @@ RSpec.describe "Stations", :type => :request do
 
     subject(:station) { create(:station) }
 
-    before { get api_v1_station_path(station.code) }
+    context 'with the valid station code' do
 
-    it 'is successful' do
-      expect(response).to have_http_status(200)
+      before { get api_v1_station_path(station.code) }
+
+      it 'is successful' do
+          expect(response).to have_http_status(200)
+        end
+
+      describe 'response body' do
+
+        subject { JSON.parse(response.body) }
+
+        it 'returns an object' do
+          expect(JSON.parse(response.body)).to be_a(Hash)
+        end
+
+      end
+
     end
 
-    it 'returns an object' do
-      expect(JSON.parse(response.body)).to be_a(Hash)
-    end
+    context 'with an invalid station code' do
 
-    context 'with invalid id' do
-
-      before { get api_v1_station_path('invalid_id') }
+      before { get api_v1_station_path('invalid_code') }
 
       it 'fails with Not Found status code' do
         expect(response).to have_http_status(404)

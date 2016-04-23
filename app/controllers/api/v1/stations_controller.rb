@@ -5,7 +5,7 @@ module API::V1
 
   # GET /stations
   def index
-    @stations = Station.includes(measurements: [:subject, :norms]).all
+    @stations = Station.includes(channels: [:subject]).all
 
     render json: @stations, each_serializer: StationPreviewSerializer
   end
@@ -49,7 +49,7 @@ module API::V1
 
   # Only allow a trusted parameter "white list" through.
   def station_params
-    params.require(:station).permit(:name, :identifier_code, :latitude, :longitude)
+    params.require(:station).permit(:name, :code, :latitude, :longitude)
   end
 
   end

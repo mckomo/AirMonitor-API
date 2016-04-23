@@ -4,41 +4,32 @@ RSpec.describe Measurement, :type => :model do
 
   subject(:measurement) { create(:measurement) }
 
-  it 'has the subject' do
-    expect(measurement.subject).not_to be_nil
+  it 'has the channel' do
+    expect(measurement.channel).to be_a(Channel)
   end
 
-  it 'has norms' do
-    expect(measurement.norms).not_to be_empty
+  it 'has the user' do
+    expect(measurement.user).to be_a(User)
   end
 
   describe '.save!' do
 
-    let(:new_measurement) { build(:measurement, time: Time.zone.parse('2015-01-26 20:00')) }
+    context 'when a time span between measurements is equal to 5 minutes' do
 
+      let(:new_measurement) { copy(measurement).alter(time: +5.minutes) }
 
-    context 'when there was similar measurement more than 5 minutes earlier or later' do
-
-      before { create(:measurement,
-                      time: new_measurement.time + [-6, 6].sample.minutes,
-                      station: new_measurement.station,
-                      subject: new_measurement.subject ) }
-
-      it 'succeeds' do
-        new_measurement.save!
+      it 'fails' do
+        expect { new_measurement.save! }.to raise_error ActiveRecord::RecordInvalid
       end
 
     end
 
-    context 'when there was similar measurement less than 5 minutes earlier or later' do
+    context 'when a time span between measurements is greater than 5 minutes' do
 
-      before { create(:measurement,
-                      time: new_measurement.time + rand(-5 .. 5).minutes,
-                      station: new_measurement.station,
-                      subject: new_measurement.subject ) }
+      let(:new_measurement) { copy(measurement).alter(time: +6.minutes) }
 
-      it 'fails' do
-        expect{ new_measurement.save! }.to raise_error ActiveRecord::RecordInvalid
+      it 'succeeds' do
+        new_measurement.save!
       end
 
     end
