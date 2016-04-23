@@ -5,7 +5,7 @@ RSpec.describe Station, :type => :model do
   subject(:station) { create(:station) }
 
   it 'has the user' do
-    expect(station.user).not_to be_nil
+    expect(station.user).to be_a(User)
   end
 
 end

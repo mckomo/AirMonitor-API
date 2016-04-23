@@ -2,11 +2,10 @@ FactoryGirl.define do
 
   factory :measurement do
     value 100.0
-    source "Source name"
-    station
-    subject { create(:subject) }
+    source 'Source name'
+    channel
     user
-    time { Time.now }
+    time
   end
 
 end
