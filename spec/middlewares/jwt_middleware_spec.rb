@@ -1,54 +1,49 @@
 require 'rails_helper'
 
-RSpec.describe RailsJwt::Middleware, :type => :middleware do
+RSpec.describe JWT::Middleware, :type => :middleware do
 
-  let(:url) { 'http://example.com' }
   let(:app) { proc{[200,{},['Hello, world.']]} }
+  let(:env) { env_with_bearer(token) }
   let(:secret) { Rails.application.secrets.jwt_secret }
+  let(:payload) { Hash('data' => 'Some data') }
 
-  subject { RailsJwt::Middleware.new(app) }
+  subject { JWT::Middleware.new(app) }
 
   describe '.call' do
 
-    context 'with a Bearer token in the Authorization header' do
+    before { subject.call(env) }
 
-      let(:env) { env_for(url, { 'HTTP_AUTHORIZATION' => "Bearer #{token}" }) }
-      let(:token) { encode_jwt_with(secret) }
+    context 'with a Bearer JWT token' do
 
-      context 'that is the valid JWT token' do
+      let(:token) { encode_jwt(secret) }
 
-        it 'appends the JWT token payload to the request environment' do
-          subject.call(env)
-          expect(env['jwt.token.payload']).to eq(decode_jwt(token).first)
+      context 'that is valid' do
+
+        it 'appends the token payload to the request environment' do
+          expect(env['jwt.token.payload']).to eq(payload)
         end
 
       end
 
-      context 'that is the false JWT token' do
+      context 'that is invalid' do
 
-        let(:token) { encode_jwt_with('invalid_secreet') }
+        let(:token) { encode_jwt('invalid_secreet') }
 
-        it 'appends the VerificationError to the request environment' do
-          subject.call(env)
-          expect(env['jwt.token.error']).to be_a(JWT::VerificationError)
+        it 'appends an error to the request environment' do
+          expect(env['jwt.token.error']).to be_a(StandardError)
         end
 
       end
 
     end
-
   end
 
-  def encode_jwt_with(secret)
-    JWT.encode({ data: 'test' }, secret || '', 'HS256')
+  def encode_jwt(secret)
+    JWT::Token.encode(payload, secret)
   end
 
-  def decode_jwt(token)
-    JWT.decode(token, secret, true, { :algorithm => 'HS256' })
-  end
-
-  def env_for(url, opts = {})
-    Rack::MockRequest.env_for(url, opts)
+  def env_with_bearer(token)
+    Rack::MockRequest.env_for('http://example.com', { 'HTTP_AUTHORIZATION' => "Bearer #{token}" })
   end
 
 end

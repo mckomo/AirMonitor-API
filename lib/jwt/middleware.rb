@@ -1,4 +1,4 @@
-module RailsJwt
+module JWT
   class Middleware
 
     def initialize(app)
@@ -6,15 +6,19 @@ module RailsJwt
     end
 
     def call(env)
+
       encoded_token = extract_bearer(env['HTTP_AUTHORIZATION'])
 
       begin
-        env['jwt.token.payload'] = Token.decode!(encoded_token).payload unless encoded_token.empty?
-      rescue JWT::VerificationError => error
+        env['jwt.token.payload'] = Token
+                                       .decode!(encoded_token)
+                                       .payload
+      rescue JWT::DecodeError, JWT::VerificationError => error
         env['jwt.token.error'] = error
       end
 
       @app.call(env)
+
     end
 
     private
