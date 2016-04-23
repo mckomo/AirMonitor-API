@@ -1,10 +1,13 @@
 module API
-  class EndpointController < ActionController::API
+
+  class EndpointController < ApplicationController
 
     def self.errors_to_rescue
-       [Errors::UnauthorizedAccessError,
-        ActiveRecord::RecordNotFound,
-        ActionController::RoutingError]
+      [
+          AirMonitor::UnauthorizedAccessError,
+          ActiveRecord::RecordNotFound,
+          ActionController::RoutingError
+      ]
     end
 
     rescue_from *errors_to_rescue, with: :render_error
@@ -14,7 +17,7 @@ module API
              adapter: :json,
              root: 'error',
              serializer: ErrorSerializer,
-             status: Errors.http_status_for(error)
+             status: AirMonitor::Error.http_status_for(error)
     end
 
     def endpoint_not_found
@@ -22,4 +25,5 @@ module API
     end
 
   end
+
 end
