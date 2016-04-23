@@ -1,1 +1,1 @@
-Rails.application.config.middleware.use RailsJwt::Middleware
+Rails.application.config.middleware.use JWT::Middleware

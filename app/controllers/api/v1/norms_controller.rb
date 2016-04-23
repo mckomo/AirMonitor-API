@@ -5,7 +5,13 @@ module API::V1
     def index
       @norms = Norm.includes(:subject).all
 
-      render json: @norms, each_serializer: NormPreviewSerializer
+      render json: @norms, each_serializer: NormSerializer
+    end
+
+    private
+
+    def norms
+      Norm.includes(:subject).all
     end
 
   end

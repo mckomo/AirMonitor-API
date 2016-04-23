@@ -24,3 +24,21 @@ RSpec.configure do |config|
   end
 
 end
+
+module Alterable
+  def alter(params)
+    params.each { |k, v| self[k] += v }; self
+  end
+end
+
+def body
+  JSON.parse(response.body)
+end
+
+def copy(object)
+  object.dup.extend(Alterable)
+end
+
+def token_header
+  Hash('Authorization' => "Bearer #{JWT::Token.for(create(:user))}")
+end
