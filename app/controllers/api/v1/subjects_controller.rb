@@ -3,7 +3,13 @@ module API::V1
 
     # GET /api/v1/subjects
     def index
-      render json: Subject.includes(:norms).all
+      render json: norms
+    end
+
+    private
+
+    def norms
+      Subject.includes(:norms).all
     end
 
   end

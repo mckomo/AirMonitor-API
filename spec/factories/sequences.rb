@@ -7,7 +7,7 @@ FactoryGirl.define do
   sequence :symbol do |n|
     "CODE<sub>#{n}</sub>"
   end
-  
+
   sequence :time do |n|
     Time.now - n.hours
   end
