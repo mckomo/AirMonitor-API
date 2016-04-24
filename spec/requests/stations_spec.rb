@@ -72,4 +72,59 @@ RSpec.describe "Stations", :type => :request do
 
   end
 
+  describe 'GET /api/v1/stations/nearest' do
+
+    let!(:east_station) { create(:station, code: 'EAST', latitude: 50.069308, longitude: 20.053492) }
+    let!(:west_station) { create(:station, code: 'WEST', latitude: 50.081197, longitude: 19.895358) }
+    let!(:center_station) { create(:station, code: 'CENTER', latitude: 50.057678, longitude: 19.926189) }
+    let!(:south_station) { create(:station, code: 'SOUTH', latitude: 50.010575, longitude: 19.949189) }
+
+    context 'with the location coordinates close to the existing station' do
+
+      let(:near_center_location) { Hash(latitude: 50.050897, longitude: 19.920273) }
+
+      before { get nearest_api_v1_stations_path(location: near_center_location) }
+
+      it 'is successful' do
+        expect(response).to have_http_status(200)
+      end
+
+      describe 'response body' do
+
+        it 'returns an object' do
+          expect(body).to be_a(Hash)
+        end
+
+        it 'returns the closest station' do
+          expect(body['code']).to eq('CENTER')
+        end
+
+      end
+
+    end
+
+    context 'with the location coordinates far from existing stations' do
+
+      let(:other_city_location) { Hash(latitude: 52.13, longitude: 21.00) }
+
+      before { get nearest_api_v1_stations_path(location: other_city_location) }
+
+      it 'fails with Not Found status code' do
+        expect(response).to have_http_status(404)
+      end
+
+    end
+
+    context 'without a location coordinates' do
+
+      before { get nearest_api_v1_stations_path('with no coordinates') }
+
+      it 'fails with Bad Request status code' do
+        expect(response).to have_http_status(400)
+      end
+
+    end
+
+  end
+
 end
