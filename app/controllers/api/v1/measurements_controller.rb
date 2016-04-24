@@ -28,7 +28,7 @@ module API::V1
       if @measurement.save
         render json: @measurement,
                status: :created,
-               location: api_v1_measurement_path(@measurement.id)
+               location: api_v1_measurement_url(@measurement.id)
       else
         render json: @measurement.errors,
                status: :unprocessable_entity

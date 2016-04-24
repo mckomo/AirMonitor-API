@@ -62,8 +62,13 @@ RSpec.describe 'Measurements', :type => :request do
                     params: params,
                     headers: token_header }
 
-      it 'is successful with Created status code' do
+
+      it 'responds with Created status code' do
         expect(response).to have_http_status(201)
+      end
+
+      it 'returns Location header with URL to the created measurement' do
+        expect(response).to have_header('Location').with_value(api_v1_measurement_url(Measurement.last))
       end
 
     end
@@ -72,7 +77,7 @@ RSpec.describe 'Measurements', :type => :request do
 
       before { post api_v1_channel_measurements_path(channel.code, params: params) }
 
-      it 'is successful with Created status code' do
+      it 'is successful with Unauthorized status code' do
         expect(response).to have_http_status(401)
       end
 
