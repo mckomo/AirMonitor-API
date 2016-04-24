@@ -39,16 +39,16 @@ module API::V1
     private
 
     def set_measurement
-      @measurement = Measurement.find(params[:id])
+      @measurement = Measurement.find_by_id(params[:id])
     end
 
     def set_channel
       @channel = Channel.find_by_code!(params[:channel_code])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def measurement_params
-      params.require(:measurement)
+      params
+          .require(:measurement)
           .permit(:value, :time, :source)
           .merge(association_params)
     end

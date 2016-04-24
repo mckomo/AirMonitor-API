@@ -1,11 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', github: "rails/rails"
-# gem 'sprockets-rails', github: "rails/sprockets-rails"
-# gem 'sprockets', github: "rails/sprockets"
-# gem 'sass-rails', github: "rails/sass-rails"
-gem 'arel', github: "rails/arel"
-gem 'rack', github: "rack/rack"
+gem 'rails', '>= 5.0.0.beta3', '< 5.1'
 
 gem 'pg', '~> 0.18'
 gem 'bcrypt', '~> 3.1.7'
