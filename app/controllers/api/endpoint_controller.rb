@@ -6,7 +6,8 @@ module API
       [
           AirMonitor::UnauthorizedAccessError,
           ActiveRecord::RecordNotFound,
-          ActionController::RoutingError
+          ActionController::RoutingError,
+          ActionController::ParameterMissing
       ]
     end
 

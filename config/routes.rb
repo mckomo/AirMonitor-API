@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       end
 
       resources :stations, param: :code do
+        get 'nearest', on: :collection
         resources :channels, shallow: true
       end
 
