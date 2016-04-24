@@ -1,6 +1,8 @@
 module API::V1
   class StationsController < API::EndpointController
 
+    MAX_STATION_DISTANCE = 15.0
+
     before_action :set_station, only: [:show]
 
     # GET /stations
@@ -18,14 +20,16 @@ module API::V1
     # GET /stations/nearest
     def nearest
       @station = Station
-                     .near(location_coordinates, 15, :units => :km)
+                     .near(location_coordinates, MAX_STATION_DISTANCE, :units => :km)
                      .first
 
       unless @station
-        raise ActiveRecord::RecordNotFound, 'No station found in distance of 15 km'
+        raise ActiveRecord::RecordNotFound, "No station found in distance of #{MAX_STATION_DISTANCE} km"
       end
 
-      render json: @station
+      render json: @station,
+             status: :see_other,
+             location: api_v1_station_url(@station.code)
     end
 
     private

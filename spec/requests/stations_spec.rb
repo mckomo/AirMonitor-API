@@ -85,20 +85,20 @@ RSpec.describe "Stations", :type => :request do
 
       before { get nearest_api_v1_stations_path(location: near_center_location) }
 
-      it 'is successful' do
-        expect(response).to have_http_status(200)
+      it 'responds with See Other status' do
+        expect(response).to have_http_status(303)
       end
 
-      describe 'response body' do
+      it 'returns an object' do
+        expect(body).to be_a(Hash)
+      end
 
-        it 'returns an object' do
-          expect(body).to be_a(Hash)
-        end
+      it 'returns the closest station' do
+        expect(body['code']).to eq(center_station.code)
+      end
 
-        it 'returns the closest station' do
-          expect(body['code']).to eq('CENTER')
-        end
-
+      it 'returns Location header with URL to the closest station' do
+        expect(response).to have_header('Location').with_value(api_v1_station_url(center_station.code))
       end
 
     end

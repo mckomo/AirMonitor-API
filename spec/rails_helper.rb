@@ -25,10 +25,32 @@ RSpec.configure do |config|
 
 end
 
+RSpec::Matchers.define :have_header do |header_name|
+
+  match do |response|
+    @actual = response.headers[header_name]
+
+    values_match? @expected_value, @actual
+  end
+
+  chain :with_value do |value|
+    @expected_value = value
+  end
+
+  failure_message do |actual|
+    "expected that response would have header '#{header_name}' equal #{@expected_value}, not #{actual}"
+  end
+
+end
+
 module Alterable
   def alter(params)
     params.each { |k, v| self[k] += v }; self
   end
+end
+
+def headers
+  response.headers
 end
 
 def body
