@@ -11,7 +11,7 @@ module API
       ]
     end
 
-    rescue_from *errors_to_rescue, with: :render_error
+    rescue_from(*errors_to_rescue, with: :render_error)
 
     def render_error(error)
       render json: error,
