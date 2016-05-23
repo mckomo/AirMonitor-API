@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '>= 5.0.0.beta3', '< 5.1'
+gem 'rails', '>= 5.0.0.rc1', '< 5.1'
 
 gem 'pg', '~> 0.18'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt', '~> 1.5'
 gem 'colorize', '~> 0.7.7'
 gem 'geocoder', '~> 1.3'
+gem 'kaminari'
+gem 'api-pagination'
 
 # Use ActiveModelSerializers to serialize JSON responses
 gem 'active_model_serializers', '~> 0.10.0.rc5'
