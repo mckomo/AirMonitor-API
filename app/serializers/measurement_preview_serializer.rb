@@ -1,5 +1,5 @@
 class MeasurementPreviewSerializer < ActiveModel::Serializer
 
-  attributes :value, :time, :source
+  attributes :id, :value, :time, :source
 
 end

@@ -13,14 +13,14 @@ class EmptyRangeValidator < ActiveModel::Validator
 
     @record = record
 
-    if range_empty?
-      @record.errors[:base] << error_message
+    if records_in_range?
+      @record.errors[@attribute] << error_message
     end
 
   end
 
-  def range_empty?
-    repository.exists?(element_in_range_query)
+  def records_in_range?
+    repository.exists?(records_in_range_query)
   end
 
   private
@@ -29,7 +29,7 @@ class EmptyRangeValidator < ActiveModel::Validator
     value_of(attribute) - range_radius .. value_of(attribute) + range_radius
   end
 
-  def element_in_range_query
+  def records_in_range_query
     { attribute => range }.merge(scope_query)
   end
 

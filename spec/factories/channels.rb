@@ -7,12 +7,16 @@ FactoryGirl.define do
     subject
     user
 
-    transient do
-      measurement_count 0
-    end
+    factory :channel_with_measurements do
 
-    after(:create) do |channel, evaluator|
-      create_list(:measurement, evaluator.measurement_count, channel: channel)
+      transient do
+        measurement_count 100
+      end
+
+      after(:create) do |channel, evaluator|
+        create_list(:measurement, evaluator.measurement_count, channel: channel)
+      end
+
     end
 
   end
