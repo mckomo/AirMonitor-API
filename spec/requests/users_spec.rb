@@ -8,7 +8,7 @@ RSpec.describe 'Users', :type => :request do
 
       let(:user) { create(:user) }
 
-      before { get api_v1_current_user_path, headers: token_header }
+      before { get api_v1_current_user_path, headers: auth_header }
 
       it 'is successful' do
         expect(response).to have_http_status(200)
