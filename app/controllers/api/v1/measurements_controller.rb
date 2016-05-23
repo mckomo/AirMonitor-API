@@ -8,6 +8,8 @@ module API::V1
     before_action :set_channel, only: [:index, :create]
     before_action :set_measurement, only: [:show]
 
+    using FixnumRefinements
+
     # GET /api/v1/measurements/:id
     def show
       render json: @measurement
@@ -15,9 +17,11 @@ module API::V1
 
     # GET /api/v1/channels/:code/measurements
     def index
-      measurements = @channel.measurements
+      @measurements = @channel.measurements
 
-      render json: measurements, each_serializer: MeasurementPreviewSerializer
+      paginate json: @measurements,
+               each_serializer: MeasurementPreviewSerializer,
+               per_page: page_size(default: 24)
     end
 
     # POST /api/v1/channels/:code/measurements
@@ -39,11 +43,17 @@ module API::V1
     private
 
     def set_measurement
-      @measurement = Measurement.find_by_id(params[:id])
+      @measurement = Measurement.find_by_id!(params[:id])
     end
 
     def set_channel
       @channel = Channel.find_by_code!(params[:channel_code])
+    end
+
+    def page_size(default:)
+      params.fetch(:per_page, default)
+          .to_i
+          .fit(1 .. 100)
     end
 
     def measurement_params
@@ -54,7 +64,10 @@ module API::V1
     end
 
     def association_params
-      {channel: @channel, user: request.user}
+      {
+          user: request.user,
+          channel: @channel
+      }
     end
 
   end
