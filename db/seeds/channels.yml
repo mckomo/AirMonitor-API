@@ -1,4 +1,5 @@
 ---
+# Aleja Krasińskiego
 - id: 749bb90c-cce8-46c5-b265-de112182e08a
   code: MAL005-NO2
   station_id: 362d9262-9dd2-47d6-8c20-0dbe64ccca5e
@@ -34,6 +35,7 @@
   station_id: 362d9262-9dd2-47d6-8c20-0dbe64ccca5e
   subject_id: 7793b256-215f-4306-9e9c-dd0a2a8d733f
   user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+# Nowa Huta
 - id: 7baa0edc-d16e-4a35-91be-f15665769bf4
   code: MAL006-SO2
   station_id: 3572db8d-ff40-4612-9f6e-01814df405b0
@@ -69,6 +71,12 @@
   station_id: 3572db8d-ff40-4612-9f6e-01814df405b0
   subject_id: 7793b256-215f-4306-9e9c-dd0a2a8d733f
   user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 25a3d3a6-d316-4d77-bb26-32ae72f752f9
+  code: MAL006-CO
+  station_id: 3572db8d-ff40-4612-9f6e-01814df405b0
+  subject_id: e85d1137-0dc2-4530-9dfb-fa798581324e
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+# Kurdwanów
 - id: 012b1372-df0e-417c-9e7f-328037eb9991
   code: MAL015-SO2
   station_id: 246540b0-f9c6-455e-ba02-6049d6deff81
@@ -104,6 +112,12 @@
   station_id: 246540b0-f9c6-455e-ba02-6049d6deff81
   subject_id: 7793b256-215f-4306-9e9c-dd0a2a8d733f
   user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+- id: 2a326bbc-0bc3-4db3-8b52-0be1bf7b6538
+  code: MAL015-O3
+  station_id: 246540b0-f9c6-455e-ba02-6049d6deff81
+  subject_id: 38eb763c-f1b6-4174-baa9-16052f863d5b
+  user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+# Dietla
 - id: 4e5ba446-4572-4f1e-a519-98e05897f4fc
   code: MAL028-NO2
   station_id: 2fb2147c-d0bf-4b80-9c27-f51293c89124
@@ -124,11 +138,13 @@
   station_id: 2fb2147c-d0bf-4b80-9c27-f51293c89124
   subject_id: 2e3b0090-71d0-4172-b62f-58121b801962
   user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+# Piastów
 - id: 40e6634b-3644-4dd4-b3c1-9f8f2866b37b
   code: MAL031-PM10
   station_id: 6c5dcc5c-077b-4c31-a9b1-a47cdbb711d8
   subject_id: 2e3b0090-71d0-4172-b62f-58121b801962
   user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
+# Złoty Róg
 - id: 8d9dd403-9b44-4f14-8155-d87a2d1dc335
   code: MAL032-PM10
   station_id: 09b8a1d6-9433-4c54-9170-bdb58b6ae370

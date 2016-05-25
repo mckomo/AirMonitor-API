@@ -18,8 +18,8 @@
   unit: µg/m<sup>3</sup>
   user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
 - id: b1f3cd13-24b4-4d30-9272-1a0301a1c3ae
-  code: 'NO'
-  symbol: 'NO'
+  code: NO
+  symbol: NO
   name: Tlenk azotu
   unit: µg/m<sup>3</sup>
   user_id: 6e3f119c-a4ad-4bfd-93bf-9ffdc90d21d0
