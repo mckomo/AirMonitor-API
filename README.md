@@ -6,4 +6,4 @@ AirMonitor is a web service that provides data about air pollution.
 
 ## Documentation
 
-Current documentation of API is available on the [project website](https://air-monitor.pl/documentation.html).
+Vist [API documentation](docs.airmonitor.apiary.io) website.
