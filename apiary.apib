@@ -1,0 +1,335 @@
+FORMAT: 1A
+HOST: https://air.knp-dev.org
+
+# AirMonitor
+
+AirMonitor is a simple API for air pollution measurement system. Source code is available on [GitHub](https://github.com/mckomo/AirMonitor).
+
+## Authorization
+
+Main goal of the *AirMonitor* is to make information about air pollution widely available, thus *read* operations do not require any form of authorization. 
+However if you interested in sharing your own data you will be required to register a new account. 
+E-mail and password used during registration process will be your credentials necessary to obtain an [access token](#access-token-post). 
+Access token is used in form of the **Bearer token** and must be places in `Authorization` header for each restricted API request.
+Example of such a header is provided below.
+
+```
+Authorization: Bearer AUTH_TOKEN
+``` 
+
+## Errors
+
+During API usage you may stumble upon a request error. If a HTTP response has `4xx` or `5xx` status code you should expect an error with the following format:
+
+```
+{
+    "message": "Unauthorized access error",
+    "exception": {},
+    "code": 401
+}  
+```
+
+### Validation errors
+
+When `POST` or `PUT` request has failed and resulted in `422` HTTP status code you should expect a validation error that contains a validation message for each invalid field. 
+
+```
+{
+    "name": [
+        "can't be blank"
+    ],
+    "user": [
+        "must exist",
+    ]
+}
+```
+
+## Access token [/api/v1/auth/token]
+
+### Create Access Token [POST]
+
+Obtain an access token that is required for *nonread* operations.
+
++ Request (application/json)
+    
+        {  
+           "auth":{  
+              "email": "mckomo@gmail.com",
+              "password": "MyPassword"
+           }
+        }
+
++ Response 201 (application/json)
+
+        {
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmN2JmODVkNC0xYTZmLTw4MWQtYjhkNC0zNDliYWZhNDExYzMifQ.DyDxMfMoHfaLTuq-qAAwAfoh-rgCHTcA5Knsy4oIZvw"
+        }
+
+## User [/api/v1/me]
+
+### View a User Profile [GET]
+
+Get specific measurement station.
+
++ Response 200 (application/json)
+
+        {
+          "id": "f7bf85d4-1a6f-481d-b8d4-349bafa411c3",
+          "name": "Mckomo",
+          "email": "mckomo@gmail.com",
+          "joined_at": "2016-01-02T17:51:08.507Z"
+        }
+
+## Stations Collection [/api/v1/stations]
+
+### List All Stations [GET]
+
+List all measurement stations.
+
++ Response 200 (application/json)
+
+        [  
+           {  
+              "id":"13f99447-dd96-4ee9-b218-191a9a1c1416",
+              "code":"PL0012A",
+              "name":"Kraków, Aleja Krasińskiego",
+              "latitude":50.057678,
+              "longitude":19.926189
+           }
+        ]
+ 
+## Station [/api/v1/stations/{station_id}]
+
++ Parameters
+    + station_id (uuid) - ID of the Station
+
+### View a Station Detail [GET]
+
+Get specific measurement station.
+
++ Response 200 (application/json)
+
+        {  
+            "id":"13f99447-dd96-4ee9-b218-191a9a1c1416",
+            "code":"PL0012A",
+            "name":"Kraków, Aleja Krasińskiego",
+            "latitude":50.057678,
+            "longitude":19.926189,
+            "created_at":"2015-12-28T21:46:17.258Z",
+            "updated_at":"2015-12-28T21:46:17.258Z",
+            "creator":{  
+                "name":"Mckomo"
+            }
+        }  
+           
+## Measurements Collection [/api/v1/stations/{station_id}/measurements]
+
++ Parameters
+    + station_id (uuid) - ID of the Station that a new Measurement should be added to
+
+### List All Station's Measurements [GET]
+
+List Measurements associated to the Station with the given ID.
+
++ Response 200 (application/json)
+
+        [  
+            {  
+                 "id":"d37e197a-1818-4dec-8dd4-568a0a681ea9",
+                 "value":166.0,
+                 "time":"2016-01-02T16:17:59.314Z",
+                 "source":"http://monitoring.krakow.pios.gov.pl",
+                 "norms":[  
+                    {  
+                       "id":"d5bbd3e4-a4a0-4a3d-8082-b5e5973875e8",
+                       "value":200.0,
+                       "level":"permissible",
+                       "interval":"1 hour"
+                    },
+                    {  
+                       "id":"7f55e179-c28e-4b8d-96b4-83f86c323227",
+                       "value":400.0,
+                       "level":"alarming",
+                       "interval":"1 hour"
+                    },
+                    {  
+                       "id":"8870aa65-5dd4-40e4-b8f4-5da27aa81d63",
+                       "value":40.0,
+                       "level":"permissible",
+                       "interval":"1 year"
+                    }
+                 ],
+                 "subject":{  
+                    "id":"79f28303-696d-4fcc-9eab-005d869a8348",
+                    "code":"NO2",
+                    "name":"Dwutlenek azotu",
+                    "unit":"µg/m\u003csup\u003e3\u003c/sup\u003e"
+                 }
+            }
+        ]
+       
+### Create a New Measurement [POST]
+
++ Request (application/json)
+    
+    + Headers
+    
+            Authorization: Bearer AUTH_TOKEN
+        
+    + Body
+    
+            {  
+               "measurement":{  
+                  "value":626.0,
+                  "time":"2016-01-02T16:17:59.314Z",
+                  "source":"http://monitoring.krakow.pios.gov.pl",
+                  "subject_id":"f70f05b9-76fa-4791-8ee4-463fd3f49956"
+               }
+            }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /api/v1/measurements/407f057a-788d-4e44-a278-391127193793
+
+    + Body
+
+            {  
+                "id":"407f057a-788d-4e44-a278-391127193793",
+                "value":626.0,
+                "time":"2016-01-02T16:17:59.314Z",
+                "source":"http://monitoring.krakow.pios.gov.pl",
+                "created_at":"2016-01-02T16:17:59.403Z",
+                "norms":[],
+                "subject":{  
+                    "id":"f70f05b9-76fa-4791-8ee4-463fd3f49956",
+                    "code":"NO",
+                    "name":"Tlenk azotu",
+                    "unit":"µg/m\u003csup\u003e3\u003c/sup\u003e"
+                },
+                "creator":{  
+                    "name":"Mckomo"
+                }
+            } 
+        
++ Request (application/json)
+               
++ Response 401 (application/json)
+
+        {
+            "message": "Unauthorized access error",
+            "exception": {},
+            "code": 401
+        }      
+
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Bearer AUTH_TOKEN
+        
+    + Body
+    
+            {  
+                "measurement": {
+                    "value":626.0
+                }
+            }
+        
++ Response 422 (application/json)
+
+
+        {
+            "subject": [
+                "must exist",
+                "can't be blank"
+            ],
+            "time": [
+                "can't be blank"
+            ]
+        }
+        
+## Measurement [/api/v1/measurements/{measurement_id}]
+
++ Parameters
+    + measurement_id (uuid) - ID of the Measurement
+
+### View a Measurement Detail [GET]
+
++ Response 200 (application/json)
+
+        {  
+            "id":"13f99447-dd96-4ee9-b218-191a9a1c1416",
+            "code":"PL0012A",
+            "name":"Kraków, Aleja Krasińskiego",
+            "latitude":50.057678,
+            "longitude":19.926189,
+            "created_at":"2015-12-28T21:46:17.258Z",
+            "updated_at":"2015-12-28T21:46:17.258Z",
+            "creator":{  
+                "name":"Mckomo"
+            }
+        }
+              
+## Subjects Collection [/api/v1/subjects]
+
+List all supported measurement subjects.
+
+### List All Subjects [GET]
+
++ Response 200 (application/json)
+
+        [  
+          {  
+             "id":"79f28303-696d-4fcc-9eab-005d869a8348",
+             "code":"NO2",
+             "name":"Dwutlenek azotu",
+             "unit":"µg/m\u003csup\u003e3\u003c/sup\u003e",
+             "created_at":"2015-12-28T21:46:17.277Z",
+             "updated_at":"2015-12-28T21:46:17.277Z",
+             "norms":[  
+                {  
+                   "id":"d5bbd3e4-a4a0-4a3d-8082-b5e5973875e8",
+                   "value":200.0,
+                   "interval":"1 hour",
+                   "level":"permissible"
+                },
+                {  
+                   "id":"7f55e179-c28e-4b8d-96b4-83f86c323227",
+                   "value":400.0,
+                   "interval":"1 hour",
+                   "level":"alarming"
+                },
+                {  
+                   "id":"8870aa65-5dd4-40e4-b8f4-5da27aa81d63",
+                   "value":40.0,
+                   "interval":"1 year",
+                   "level":"permissible"
+                }
+             ]
+          }
+        ]
+        
+## Norms Collection [/api/v1/norms]
+
+List all measurement norms.
+
+### List All Norms [GET]
+
++ Response 200 (application/json)
+        
+         [  
+             {  
+                "id":"d5bbd3e4-a4a0-4a3d-8082-b5e5973875e8",
+                "value":200.0,
+                "level":"permissible",
+                "interval":"1 hour",
+                "subject":{  
+                   "id":"79f28303-696d-4fcc-9eab-005d869a8348",
+                   "code":"NO2",
+                   "name":"Dwutlenek azotu",
+                   "unit":"µg/m\u003csup\u003e3\u003c/sup\u003e"
+                }
+             }
+         ]
