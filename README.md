@@ -1,4 +1,4 @@
-# AirMonitor
+# AirMonitor-API
 
 [![Build Status](https://travis-ci.org/mckomo/AirMonitor.svg?branch=master)](https://travis-ci.org/mckomo/AirMonitor)
 
