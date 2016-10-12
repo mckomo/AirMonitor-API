@@ -10,6 +10,7 @@ gem 'geocoder', '~> 1.3'
 gem 'kaminari', '~> 0.17'
 gem 'api-pagination', '~> 4.3'
 gem 'newrelic_rpm', '~> 3.16'
+gem 'lograge', '~> 0.4.1'
 
 # Use ActiveModelSerializers to serialize JSON responses
 gem 'active_model_serializers', '~> 0.10'
