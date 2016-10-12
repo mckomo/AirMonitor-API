@@ -10,9 +10,8 @@ module JWT
       encoded_token = extract_bearer(env['HTTP_AUTHORIZATION'])
 
       begin
-        env['jwt.token.payload'] = Token
-                                       .decode!(encoded_token)
-                                       .payload
+        env['jwt.token.payload'] = Token.decode!(encoded_token)
+                                        .payload
       rescue JWT::DecodeError, JWT::VerificationError => error
         env['jwt.token.error'] = error
       end
