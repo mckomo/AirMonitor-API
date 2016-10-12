@@ -20,3 +20,4 @@
 
 # Ignore environment specific files
 .rbenv-vars
+newrelic.yml

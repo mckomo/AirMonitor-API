@@ -33,6 +33,9 @@ Rails.application.configure do
   # when problems arise.
   config.log_level = :debug
 
+  # Enable Lograge
+  config.lograge.enabled = true
+
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :request_id ]
 
@@ -67,5 +70,7 @@ Rails.application.configure do
   # config.action_mailer.default_url_options = { host: 'air.knp-dev.org', protocol: 'https' }
 
   config.debug_exception_response_format = :api
+
+
 
 end
