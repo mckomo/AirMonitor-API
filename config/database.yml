@@ -1,14 +1,8 @@
 default: &default
   adapter: postgresql
-  host: db
+  host: db # Docker
   encoding: unicode
   pool: 5
-
-production:
-  <<: *default
-  database: air-monitor_production
-  username: <%= ENV['AIRMONITOR_DATABASE_USERNAME'] %>
-  password: <%= ENV['AIRMONITOR_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
