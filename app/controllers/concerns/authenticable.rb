@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 module Authenticable
-
   extend ActiveSupport::Concern
 
   def authenticate!
@@ -10,8 +10,7 @@ module Authenticable
 
   def subscriber_id
     request
-        .env['jwt.token.payload']
-        .try(:fetch, 'sub')
+      .env['jwt.token.payload']
+      .try(:fetch, 'sub')
   end
-
 end

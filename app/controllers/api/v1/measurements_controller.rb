@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 module API::V1
   class MeasurementsController < API::EndpointController
-
     include Authenticable
 
     before_action :authenticate!, only: [:create]
@@ -26,7 +26,6 @@ module API::V1
 
     # POST /api/v1/channels/:code/measurements
     def create
-
       @measurement = Measurement.new(measurement_params)
 
       if @measurement.save
@@ -37,7 +36,6 @@ module API::V1
         render json: @measurement.errors,
                status: :unprocessable_entity
       end
-
     end
 
     private
@@ -52,23 +50,22 @@ module API::V1
 
     def page_size(default:)
       params.fetch(:per_page, default)
-          .to_i
-          .fit(1 .. 100)
+            .to_i
+            .fit(1..100)
     end
 
     def measurement_params
       params
-          .require(:measurement)
-          .permit(:value, :time, :source)
-          .merge(association_params)
+        .require(:measurement)
+        .permit(:value, :time, :source)
+        .merge(association_params)
     end
 
     def association_params
       {
-          user: request.user,
-          channel: @channel
+        user: request.user,
+        channel: @channel
       }
     end
-
   end
 end

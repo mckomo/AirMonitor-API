@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class Norm < ActiveRecord::Base
-
   enum level: [:permissible, :warning, :alarming]
 
   default_scope { order('interval::interval, level') }
@@ -12,5 +12,4 @@ class Norm < ActiveRecord::Base
   validates :interval,  presence: true
   validates :subject,   presence: true
   validates :user,      presence: true
-
 end

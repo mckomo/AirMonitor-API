@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 module API::V1
   class StationsController < API::EndpointController
-
     MAX_STATION_DISTANCE = 15.0
 
     before_action :set_station, only: [:show]
@@ -20,8 +20,8 @@ module API::V1
     # GET /stations/nearest
     def nearest
       @station = Station
-                     .near(location_coordinates, MAX_STATION_DISTANCE, :units => :km)
-                     .first
+                 .near(location_coordinates, MAX_STATION_DISTANCE, units: :km)
+                 .first
 
       unless @station
         raise ActiveRecord::RecordNotFound, "No station found in distance of #{MAX_STATION_DISTANCE} km"
@@ -42,6 +42,5 @@ module API::V1
     def location_coordinates
       params.require(:location).permit(:latitude, :longitude).values
     end
-
   end
 end

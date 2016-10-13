@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 module API::V1
   class SubjectsController < API::EndpointController
-
     # GET /api/v1/subjects
     def index
       render json: norms
@@ -11,6 +11,5 @@ module API::V1
     def norms
       Subject.includes(:norms).all
     end
-
   end
 end

@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class UnauthorizedAccessError < RuntimeError
-
   include Serializable
   include Identifiable
 
@@ -8,5 +8,4 @@ class UnauthorizedAccessError < RuntimeError
   def initialize(message = 'Unauthorized access error')
     super(message)
   end
-
 end

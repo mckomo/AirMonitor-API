@@ -1,7 +1,6 @@
+# frozen_string_literal: true
 class CreateSubjects < ActiveRecord::Migration[5.0]
-
   def change
-
     create_table :subjects, id: :uuid do |t|
       t.string  :code,    null: false, limit: 16
       t.string  :symbol,  null: false, limit: 32
@@ -12,7 +11,5 @@ class CreateSubjects < ActiveRecord::Migration[5.0]
     end
 
     add_index :subjects, :code, unique: true
-
   end
-
 end

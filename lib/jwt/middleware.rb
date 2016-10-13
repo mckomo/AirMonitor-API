@@ -1,12 +1,11 @@
+# frozen_string_literal: true
 module JWT
   class Middleware
-
     def initialize(app)
       @app = app
     end
 
     def call(env)
-
       encoded_token = extract_bearer(env['HTTP_AUTHORIZATION'])
 
       begin
@@ -17,7 +16,6 @@ module JWT
       end
 
       @app.call(env)
-
     end
 
     private
@@ -29,6 +27,5 @@ module JWT
     def bearer?(token)
       token.try(:starts_with?, 'Bearer')
     end
-
   end
 end

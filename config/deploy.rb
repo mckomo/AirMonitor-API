@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # config valid only for current version of Capistrano
 lock '3.5.0'
 
@@ -35,7 +36,6 @@ set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'newreli
 # set :keep_releases, 5
 
 namespace :deploy do
-
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
@@ -44,5 +44,4 @@ namespace :deploy do
       # end
     end
   end
-
 end

@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 module API::V1
   class UsersController < API::EndpointController
-
     include Authenticable
 
     before_action :authenticate!, only: [:show]
@@ -9,6 +9,5 @@ module API::V1
     def show
       render json: @user
     end
-
   end
 end

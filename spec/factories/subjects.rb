@@ -1,7 +1,6 @@
+# frozen_string_literal: true
 FactoryGirl.define do
-
   factory :subject do
-
     code
     symbol
     name    'Subject name'
@@ -15,7 +14,5 @@ FactoryGirl.define do
     after(:create) do |subject, evaluator|
       create_list(:norm, evaluator.norm_count, subject: subject)
     end
-
   end
-
 end

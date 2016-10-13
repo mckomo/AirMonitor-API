@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class EmptyRangeValidator < ActiveModel::Validator
-
   attr_reader :attribute, :range_radius, :scope
 
   def initialize(options)
@@ -10,13 +10,9 @@ class EmptyRangeValidator < ActiveModel::Validator
   end
 
   def validate(record)
-
     @record = record
 
-    if records_in_range?
-      @record.errors[@attribute] << error_message
-    end
-
+    @record.errors[@attribute] << error_message if records_in_range?
   end
 
   def records_in_range?
@@ -26,7 +22,7 @@ class EmptyRangeValidator < ActiveModel::Validator
   private
 
   def range
-    value_of(attribute) - range_radius .. value_of(attribute) + range_radius
+    value_of(attribute) - range_radius..value_of(attribute) + range_radius
   end
 
   def records_in_range_query
@@ -35,8 +31,8 @@ class EmptyRangeValidator < ActiveModel::Validator
 
   def scope_query
     @scope.map(&:to_sym)
-        .map { |a| [a, value_of(a)] }
-        .to_h
+          .map { |a| [a, value_of(a)] }
+          .to_h
   end
 
   def value_of(attribute)
@@ -50,5 +46,4 @@ class EmptyRangeValidator < ActiveModel::Validator
   def error_message
     "There are other records in #{range} range"
   end
-
 end

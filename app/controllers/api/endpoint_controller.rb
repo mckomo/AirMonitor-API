@@ -1,13 +1,12 @@
+# frozen_string_literal: true
 module API
-
   class EndpointController < ApplicationController
-
     def self.errors_to_rescue
       [
-          AirMonitor::UnauthorizedAccessError,
-          ActiveRecord::RecordNotFound,
-          ActionController::RoutingError,
-          ActionController::ParameterMissing
+        AirMonitor::UnauthorizedAccessError,
+        ActiveRecord::RecordNotFound,
+        ActionController::RoutingError,
+        ActionController::ParameterMissing
       ]
     end
 
@@ -24,7 +23,5 @@ module API
     def endpoint_not_found
       raise ActionController::RoutingError, 'Endpoint not found'
     end
-
   end
-
 end

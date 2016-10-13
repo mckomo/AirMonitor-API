@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 module API::V1
   class ChannelsController < API::EndpointController
-
     before_action :set_station, only: [:index]
     before_action :set_channel, only: [:show]
 
@@ -26,6 +26,5 @@ module API::V1
     def set_channel
       @channel = Channel.find_by_code!(params[:code])
     end
-
   end
 end

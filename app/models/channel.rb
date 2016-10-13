@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class Channel < ActiveRecord::Base
-
   has_many :measurements
 
   belongs_to :station
@@ -13,5 +13,4 @@ class Channel < ActiveRecord::Base
   before_validation do
     self.code = [station.code, subject.code].join('-')
   end
-
 end

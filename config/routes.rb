@@ -1,8 +1,7 @@
+# frozen_string_literal: true
 Rails.application.routes.draw do
-
   namespace :api do
     namespace :v1 do
-
       get 'me', to: 'users#show', as: 'current_user'
 
       resources :subjects, only: [:index]
@@ -16,11 +15,8 @@ Rails.application.routes.draw do
         get 'nearest', on: :collection
         resources :channels, shallow: true
       end
-
     end
 
-    match '*unmatched_route', :to => 'endpoint#endpoint_not_found', :via => :all
-
+    match '*unmatched_route', to: 'endpoint#endpoint_not_found', via: :all
   end
-
 end

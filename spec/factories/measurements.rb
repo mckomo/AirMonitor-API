@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 FactoryGirl.define do
-
   factory :measurement do
     value 100.0
     source 'Source name'
@@ -7,5 +7,4 @@ FactoryGirl.define do
     user
     time
   end
-
 end

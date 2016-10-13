@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 require 'csv'
 
 SEEDS_DIR = Rails.root.join('db', 'seeds')
 
 def load_seeds(file_name)
-  YAML::load_file File.join(SEEDS_DIR, file_name)
+  YAML.load_file File.join(SEEDS_DIR, file_name)
 end
 
 if User.empty?
@@ -21,4 +22,3 @@ else
   puts 'Database is already seeded'.red.on_black
 
 end
-

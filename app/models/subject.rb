@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class Subject < ActiveRecord::Base
-
   belongs_to :user
 
   has_many :norms
@@ -9,5 +9,4 @@ class Subject < ActiveRecord::Base
   validates :name,  presence: true, length: { maximum: 32 }
   validates :unit,  presence: true, length: { maximum: 16 }
   validates :user,  presence: true
-
 end

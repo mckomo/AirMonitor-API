@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 FactoryGirl.define do
-
   sequence :code do |n|
     "CODE#{n}"
   end
@@ -11,5 +11,4 @@ FactoryGirl.define do
   sequence :time do |n|
     Time.now - n.hours
   end
-
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module AirMonitor
-  VERSION = ['1', '0', '0'].join('.')
+  VERSION = %w(1 0 0).join('.')
 end

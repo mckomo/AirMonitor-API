@@ -1,11 +1,10 @@
+# frozen_string_literal: true
 require 'rails_helper'
 require 'helpers/requests'
 require 'shared/requests'
 
-RSpec.describe 'Measurements', :type => :request do
-
+RSpec.describe 'Measurements', type: :request do
   describe 'GET /api/v1/channels/:code/measurements' do
-
     let(:channel) { create(:channel_with_measurements) }
     let(:pagination) { Hash.new }
 
@@ -21,7 +20,5 @@ RSpec.describe 'Measurements', :type => :request do
     it { expect(body).to all include('time') }
 
     it { expect(body).to eq body.sort_desc_by('time') }
-
   end
-
 end

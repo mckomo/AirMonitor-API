@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 class Measurement < ActiveRecord::Base
-
   default_scope { order('time DESC') }
 
   belongs_to :channel
@@ -15,7 +15,4 @@ class Measurement < ActiveRecord::Base
                  nothing_of: :time,
                  in_between: 5.minutes,
                  with_scope: [:channel_id]
-
 end
-
-

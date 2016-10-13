@@ -1,7 +1,7 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe Subject, :type => :model do
-
+RSpec.describe Subject, type: :model do
   subject { create(:subject, norm_count: 3) }
 
   it 'has norms' do
@@ -11,5 +11,4 @@ RSpec.describe Subject, :type => :model do
   it 'has the user' do
     expect(subject.user).to be_a(User)
   end
-
 end

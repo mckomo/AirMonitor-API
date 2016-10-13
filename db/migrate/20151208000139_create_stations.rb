@@ -1,7 +1,6 @@
+# frozen_string_literal: true
 class CreateStations < ActiveRecord::Migration[5.0]
-
   def change
-
     create_table :stations, id: :uuid do |t|
       t.string  :name,      null: false, limit: 64
       t.string  :code,      null: false, limit: 64
@@ -12,7 +11,5 @@ class CreateStations < ActiveRecord::Migration[5.0]
     end
 
     add_index :stations, :code, unique: true
-
   end
-
 end
